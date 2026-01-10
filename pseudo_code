@@ -1,0 +1,10 @@
+deja comprendre en quoi consiste le projet
+
+1. creer un programe qui display un prompt et attend qu'on tape des commandes
+	-un programe qui tourne avec une boucle et execute les commande
+	-
+2. pour le lancer faudras faire "./minishell"
+	-donc premier lancement on gere 0 argument
+	-
+3. tout se passe apres avec un get next line qui liras la commande taper 
+	
