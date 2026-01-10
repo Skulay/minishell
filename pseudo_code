@@ -37,9 +37,16 @@ grosso modo c'est un giga pipex qui tourne en boucle et execute les commandes
 
 2.
 
+-----------------------------------------------------------------------
+						IDEE POUR LE RENDRE PLUS SYMPA
+
+1. gerer le prompt pour afficher le NAME (dans env)
+2. suivi du PATH ou on se situe
+3. ??
 
 -----------------------------------------------------------------------
+						CE QUI EST DEJA GERER
 
 ctrl+D est deja gerer avec readline()
 
-l'historique avec les fleche deja gerer avec readline() -> ne pas oublier de clear l'historique a la fin 
+l'historique avec les fleche deja gerer avec readline() -> ne pas oublier de clear l'historique a la fin
