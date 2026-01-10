@@ -14,7 +14,7 @@ deja comprendre en quoi consiste le projet
 	-donc premier lancement on gere 0 argument
 	-
 
-4. tout se passe apres avec un get next line qui liras la commande taper 
+4. tout se passe apres avec un get next line qui liras la commande taper
 
 
 -----------------------------------------------------------------------
@@ -33,4 +33,13 @@ grosso modo c'est un giga pipex qui tourne en boucle et execute les commandes
 -----------------------------------------------------------------------
 						PARTIE PARSING
 
+1. gerer tout les token ( / | $ > < ect)
 
+2.
+
+
+-----------------------------------------------------------------------
+
+ctrl+D est deja gerer avec readline()
+
+l'historique avec les fleche deja gerer avec readline() -> ne pas oublier de clear l'historique a la fin 
