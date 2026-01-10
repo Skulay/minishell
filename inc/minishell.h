@@ -9,4 +9,23 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 
+// struct
+
+typedef struct s_data
+{
+	char	**path;
+}	t_data;
+
+// fonction principal
+
+
+// fonction utilitaires
+
+
+// Parsing
+
+
+// commande a executer (cd, env, pwd..ect)
+
+
 #endif
