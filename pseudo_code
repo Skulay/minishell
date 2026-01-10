@@ -1,10 +1,36 @@
 deja comprendre en quoi consiste le projet
 
-1. creer un programe qui display un prompt et attend qu'on tape des commandes
+1. comprendre toute les commande qu'il est possible d'utiliser
+	-prendre des notes sur les commande suseptible d'etre le plus utiliser
+	-reflechir a la facon d'organiser le code et finir de remplir ce fichier
+	-Bonus ou pas ??
+	-si bonus y reflechir des le debut
+
+2. creer un programe qui display un prompt et attend qu'on tape des commandes
 	-un programe qui tourne avec une boucle et execute les commande
 	-
-2. pour le lancer faudras faire "./minishell"
+
+3. pour le lancer faudras faire "./minishell"
 	-donc premier lancement on gere 0 argument
 	-
-3. tout se passe apres avec un get next line qui liras la commande taper 
-	
+
+4. tout se passe apres avec un get next line qui liras la commande taper 
+
+
+-----------------------------------------------------------------------
+
+2 point clef -> la partie execution et la partie parsing
+
+possibilliter de split le minishell sur ces deux partie
+
+-----------------------------------------------------------------------
+						PARTIE EXECUTION
+
+grosso modo c'est un giga pipex qui tourne en boucle et execute les commandes
+
+
+
+-----------------------------------------------------------------------
+						PARTIE PARSING
+
+
