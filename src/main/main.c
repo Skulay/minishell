@@ -6,11 +6,23 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/01/10 18:06:45 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/01/11 15:49:48 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned int	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n - 1)
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
@@ -111,11 +123,23 @@ char	*ft_get_prompt(char **env)
 	char	*path;
 
 	name = getenv("USER");
+	if (!name)
+		name = "minishell";
 	path = getenv("PWD");
-	path = ft_strtrim(path, "/home");
-	path = ft_strtrim(path, name);
-	prompt = ft_strjoin(name, " ~");
-	prompt = ft_strjoin(prompt, path);
+	if (!path)
+	{
+		path = getcwd(path, 10);
+		return (path);
+	}
+	if (ft_strncmp(path, "/home\0", 6))
+	{
+		path = ft_strtrim(path, "/home");
+		path = ft_strtrim(path, name);
+		prompt = ft_strjoin(name, " ~");
+		prompt = ft_strjoin(prompt, path);
+	}
+	else
+		prompt = "/";
 	prompt = ft_strjoin(prompt, " >");
 	return (prompt);
 }
@@ -135,5 +159,6 @@ int	main(int ac, char **av, char **env)
 		// fonction a faire pour execve(line);
 		free(line);
 	}
+	clear_history();
 	return(0);
 }
