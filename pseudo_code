@@ -107,3 +107,12 @@ tgetstr : lit une capacité chaîne termcap.
 tgoto : calcule une séquence de déplacement du curseur (termcap).
 tputs : affiche une chaîne termcap en gérant le padding/délais.
 
+
+
+
+|      -> PIPE
+>      -> REDIR_OUT
+<      -> REDIR_IN
+>>     -> APPEND
+<<     -> HEREDOC
+

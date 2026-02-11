@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/01/11 15:49:48 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/11 09:54:49 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,15 +144,38 @@ char	*ft_get_prompt(char **env)
 	return (prompt);
 }
 
+char	**make_env(void)
+{
+	int	i;
+	char **env;
+
+	i = 0;
+	env = malloc(sizeof(char *) * 3);
+	if (!env)
+		return (NULL);
+	env[0] = getcwd(NULL, 50);
+	env[1] = "PATH=";
+	env[2] = NULL;
+	return (env);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
 
 	if (ac >= 2)
 		return (0);
+	if (!env[0])
+		env = make_env();
+	int i = 0;
+	while (env[i])
+	{
+		printf("%s\n", env[i]);
+		i++;
+	}
 	while (1)
 	{
-		line = readline(ft_get_prompt(env));
+		line = readline(PROMPT);
 		if (!line)
 			break;
 		add_history(line);
