@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:33:21 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/11 13:03:22 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/11 13:19:17 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ t_token	lexer(char *line)
 
 
 
-example : grep " " | cat -e > outfile
+// example : grep " " | cat -e > outfile
 
-input origine	|->	[ grep " " ][ | ][ cat -e ][ > ][ outfile ]
+// input origine	|->	[ grep " " ][ | ][ cat -e ][ > ][ outfile ]
 
-apres lexer		|->	[WORD][PIPE][WORD][REDIR_OUT][WORD]
+// apres lexer		|->	[WORD][PIPE][WORD][REDIR_OUT][WORD]
