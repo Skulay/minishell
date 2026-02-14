@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 11:03:45 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/14 18:31:11 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/14 21:21:33 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_token	*ft_toknew(char *content, t_type token_type)
 		return (0);
 	lst->value = content;
 	lst->type = token_type;
+	lst->quote = 0;
 	lst->next = NULL;
 	return (lst);
 }
