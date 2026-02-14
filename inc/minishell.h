@@ -6,7 +6,6 @@
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdbool.h>
@@ -23,7 +22,8 @@ typedef enum e_type
 	REDIR_IN,
 	REDIR_OUT,
 	APPEND,
-	HEREDOC
+	HEREDOC,
+	ERROR
 }	t_type;
 
 typedef struct s_token
@@ -48,18 +48,29 @@ typedef struct s_data
 
 // lexer
 t_type	what_type(char *str, char c, char d);
-bool	is_word(char *str);
+bool	is_space(char c);
+bool	is_operator(char c);
+bool	is_word(char c);
 bool	is_redir_out(char c);
 bool	is_redir_in(char c);
 bool	is_append(char c, char d);
 bool	is_heredoc(char c, char d);
 bool	is_pipe(char c);
-
+bool	is_error_syntax(char c, char d);
+char	*get_operator(char *line, int *i);
+char	*get_word(char *line, int *i);
+t_token	*ft_toknew(char *content, t_type token_type);
+t_token	*ft_toklast(t_token *lst);
+void	ft_tokadd_back(t_token **lst, t_token *new);
+t_token	*lexer(char *line);
 
 // Parsing
 
 
-// commande a executer (cd, env, pwd..ect)
+// commande a executer built in(cd, env, pwd..ect)
 
+
+// debugg
+void	print_tokens(t_token *tokens);
 
 #endif

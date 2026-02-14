@@ -6,23 +6,16 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:29:12 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/11 13:07:29 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/14 18:52:08 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-bool	is_word(char *str)
+bool	is_word(char c)
 {
-	int i;
-
-	i = 0;
-	while (ft_isalnum(str[i]))
-	{
-		if (str[i + 1] == '\0')
-			return (true);
-		i++;
-	}
+	if (!is_space(c) && !is_operator(c))
+		return (true);
 	return (false);
 }
 
@@ -40,26 +33,11 @@ bool	is_heredoc(char c, char d)
 	return (false);
 }
 
-bool	is_in_quote(char *str)
+bool	is_error_syntax(char c, char d)
 {
-	int	after;
-	int	before;
-	int	i;
-	int	j;
-
-	j = 0;
-	i = 0;
-	before = 0;
-	after = 0;
-	while (str[i])
-	{
-		i++;
-	}
+	if (c == '&')
+		return (true);
+	if (c == '|' && d == '|')
+		return (true);
+	return (false);
 }
-
-
-
-
-//c'est le premier char et d c'est le char d'apres
-
-// sert a savoir si >> et << (il faut les mettre avant les is_redir_in/out, question de prioriter)

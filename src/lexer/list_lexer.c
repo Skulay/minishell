@@ -6,17 +6,17 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 11:03:45 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/11 11:10:42 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/14 18:31:11 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_token	*ft_lstnew(char *content, t_type token_type)
+t_token	*ft_toknew(char *content, t_type token_type)
 {
 	t_token	*lst;
 
-	lst = malloc(sizeof(t_list));
+	lst = malloc(sizeof(t_token));
 	if (!lst)
 		return (0);
 	lst->value = content;
@@ -24,7 +24,8 @@ t_token	*ft_lstnew(char *content, t_type token_type)
 	lst->next = NULL;
 	return (lst);
 }
-t_token	*ft_lstlast(t_token *lst)
+
+t_token	*ft_toklast(t_token *lst)
 {
 	t_token	*i;
 
@@ -36,7 +37,7 @@ t_token	*ft_lstlast(t_token *lst)
 	return (i);
 }
 
-void	ft_lstadd_back(t_token **lst, t_token *new)
+void	ft_tokadd_back(t_token **lst, t_token *new)
 {
 	t_token	*last;
 
@@ -47,7 +48,7 @@ void	ft_lstadd_back(t_token **lst, t_token *new)
 		*lst = new;
 		return ;
 	}
-	last = ft_lstlast(*lst);
+	last = ft_toklast(*lst);
 	last->next = new;
 }
 

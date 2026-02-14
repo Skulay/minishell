@@ -6,11 +6,36 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/11 09:54:49 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/14 18:44:21 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*dst;
+	size_t	s_len;
+
+	if (!s)
+		return (malloc(1));
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+	{
+		dst = malloc(1);
+		if (!dst)
+			return (0);
+		dst[0] = '\0';
+		return (dst);
+	}
+	if (len > s_len - start)
+		len = s_len - start;
+	dst = malloc(len + 1);
+	if (!dst)
+		return (0);
+	ft_strlcpy(dst, s + start, len + 1);
+	return (dst);
+}
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -146,10 +171,8 @@ char	*ft_get_prompt(char **env)
 
 char	**make_env(void)
 {
-	int	i;
 	char **env;
 
-	i = 0;
 	env = malloc(sizeof(char *) * 3);
 	if (!env)
 		return (NULL);
@@ -162,22 +185,19 @@ char	**make_env(void)
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
+	t_token	*token;
 
 	if (ac >= 2)
 		return (0);
 	if (!env[0])
 		env = make_env();
-	int i = 0;
-	while (env[i])
-	{
-		printf("%s\n", env[i]);
-		i++;
-	}
 	while (1)
 	{
 		line = readline(PROMPT);
 		if (!line)
 			break;
+		token = lexer(line);
+		print_tokens(token);
 		add_history(line);
 		// fonction a faire pour execve(line);
 		free(line);
