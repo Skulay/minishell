@@ -6,12 +6,9 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:54:23 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/14 18:55:20 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/14 21:28:27 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	syntax_error(char c, char d)
-{
-	
-}
+
 
