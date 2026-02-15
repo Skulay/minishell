@@ -6,7 +6,13 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:54:48 by alehamad          #+#    #+#             */
-/*   Updated: 2026/01/10 10:54:50 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/15 20:16:41 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../inc/minishell.h"
+
+t_data	parsing(t_token *token)
+{
+	
+}

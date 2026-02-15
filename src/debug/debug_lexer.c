@@ -6,11 +6,13 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:19:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/14 23:48:08 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/15 20:06:34 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+// a mettre dans le main pour print les token apres lexer
 
 void	print_tokens(t_token *tokens)
 {

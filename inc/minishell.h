@@ -38,7 +38,8 @@ typedef struct s_token
 
 typedef struct s_data
 {
-	char	**path;
+	char	**arg;
+	char	**my_env;
 }	t_data;
 
 // fonction principal
