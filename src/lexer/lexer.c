@@ -6,13 +6,13 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:33:21 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/14 18:59:50 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/15 01:55:26 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_type	what_type(char *str, char c, char d)
+t_type	what_type(char c, char d)
 {
 	if (is_error_syntax(c, d))
 		return (ERROR);
@@ -58,11 +58,25 @@ char	*get_operator(char *line, int *i)
 
 char	*get_word(char *line, int *i)
 {
-	int	start;
+	int		start;
+	char	quote;
 
 	start = *i;
-	while (line[*i] && is_word(line[*i]))
+	while (line[*i])
+	{
+		if (line[*i] == '\'' || line[*i] == '\"')
+		{
+			quote = line[(*i)++];
+			while (line[*i] && line[*i] != quote)
+				(*i)++;
+			if (line[*i] == quote)
+				(*i)++;
+		}
+		else if (is_space(line[*i]) || is_operator(line[*i]))
+			break ;
+		else
 		(*i)++;
+	}
 	return (ft_substr(line, start, *i - start));
 }
 
@@ -87,7 +101,7 @@ t_token	*lexer(char *line)
 			value = get_word(line, &i);
 
 		ft_tokadd_back(&tokens,
-			ft_toknew(value, what_type(value, value[0], value[1])));
+			ft_toknew(value, what_type(value[0], value[1])));
 	}
 	return (tokens);
 }

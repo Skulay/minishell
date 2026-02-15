@@ -48,7 +48,6 @@ typedef struct s_data
 
 
 // lexer
-t_type	what_type(char *str, char c, char d);
 bool	is_space(char c);
 bool	is_operator(char c);
 bool	is_word(char c);
@@ -60,9 +59,10 @@ bool	is_pipe(char c);
 bool	is_error_syntax(char c, char d);
 char	*get_operator(char *line, int *i);
 char	*get_word(char *line, int *i);
+void	ft_tokadd_back(t_token **lst, t_token *new);
+t_type	what_type(char c, char d);
 t_token	*ft_toknew(char *content, t_type token_type);
 t_token	*ft_toklast(t_token *lst);
-void	ft_tokadd_back(t_token **lst, t_token *new);
 t_token	*lexer(char *line);
 
 // Parsing

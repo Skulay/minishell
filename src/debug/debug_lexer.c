@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:19:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/14 19:05:43 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/14 23:48:08 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	print_tokens(t_token *tokens)
 	while (tokens)
 	{
 		printf("TYPE: ");
-
 		if (tokens->type == WORD)
 			printf("WORD");
 		else if (tokens->type == PIPE)
@@ -32,7 +31,6 @@ void	print_tokens(t_token *tokens)
 			printf("APPEND");
 		else if (tokens->type == HEREDOC)
 			printf("HEREDOC");
-
 		printf(" | VALUE: [%s]\n", tokens->value);
 		tokens = tokens->next;
 	}
