@@ -54,19 +54,6 @@ char	*ft_get_prompt(char **env)
 	return (prompt);
 }
 
-char	**make_env(void)
-{
-	char **env;
-
-	env = malloc(sizeof(char *) * 3);
-	if (!env)
-		return (NULL);
-	env[0] = getcwd(NULL, 50);
-	env[1] = "PATH=";
-	env[2] = NULL;
-	return (env);
-}
-
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
