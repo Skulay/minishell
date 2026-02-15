@@ -1,7 +1,7 @@
 NAME        = minishell
 
 CC          = cc
-CFLAGS      = -Iincludes -Ilibft
+CFLAGS      = -Iincludes -Ilibft -g
 LDFLAGS     = -lreadline
 
 LIBFT_DIR   = libft
@@ -23,8 +23,9 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/lexer/lexer.c \
         $(SRC_DIR)/lexer/list_lexer.c \
         $(SRC_DIR)/parsing/parsing.c \
+        $(SRC_DIR)/parsing/check_error.c \
         $(SRC_DIR)/struct/init_struct.c \
-        $(SRC_DIR)/utils/free_helper.c
+        $(SRC_DIR)/clean_up/free_tok.c
 
 OBJS = $(SRCS:.c=.o)
 

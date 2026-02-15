@@ -67,7 +67,12 @@ t_token	*ft_toklast(t_token *lst);
 t_token	*lexer(char *line);
 
 // Parsing
+int		parsing(t_token *token);
+bool	check_order(t_token *token);
+bool	check_error(t_token *token);
 
+// clean up
+void	free_tok(t_token *token);
 
 // commande a executer built in(cd, env, pwd..ect)
 

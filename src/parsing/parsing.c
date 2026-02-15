@@ -6,13 +6,17 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:54:48 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/15 20:16:41 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/16 00:17:28 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_data	parsing(t_token *token)
+int	parsing(t_token *token)
 {
-	
+	if (check_error(token));
+		return (free_tok(token), 0);
+	if (check_order(token))
+		return (free_tok(token), 0);
+	return(1);
 }
