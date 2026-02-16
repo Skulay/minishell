@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 04:18:40 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/16 06:45:43 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void		add_arg(t_cmd *cmd, char *arg);
 
 // clean up
 void		free_tok(t_token *token);
+void		free_cmd(t_cmd *cmd);
 
 // init
 t_cmd		*init_cmd(void);

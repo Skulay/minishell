@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:54:48 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 04:15:08 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/16 06:46:26 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ t_cmd	*parsing(t_token *token)
 	cmd = parse_cmd(token);
 	if (!cmd)
 		return (NULL);
+	free_tok(token);
 	return (cmd);
 }
