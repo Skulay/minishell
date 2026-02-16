@@ -68,7 +68,7 @@ t_token	*lexer(char *line);
 
 // Parsing
 int		parsing(t_token *token);
-bool	check_order(t_token *token);
+bool	check_tok(t_token *token);
 bool	check_error(t_token *token);
 
 // clean up

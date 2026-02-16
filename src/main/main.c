@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 01:03:16 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/16 02:25:40 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,7 @@ int	main(int ac, char **av, char **env)
 			break;
 		token = lexer(line);
 		print_tokens(token);
-		if (parsing(token))
-		{
-			free_tok(token);
-			return (0);
-		}
+		parsing(token);
 		add_history(line);
 		// fonction a faire pour execve(line);
 		free(line);
