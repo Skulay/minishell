@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 02:25:40 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/16 04:14:32 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int ac, char **av, char **env)
 {
 	char	*line;
 	t_token	*token;
+	t_cmd	*cmd;
 
 	if (ac >= 2)
 		return (0);
@@ -23,14 +24,14 @@ int	main(int ac, char **av, char **env)
 	{
 		line = readline(PROMPT);
 		if (!line)
-			break;
+			break ;
 		token = lexer(line);
 		print_tokens(token);
-		parsing(token);
+		cmd = parsing(token);
+		print_cmd(cmd);
 		add_history(line);
-		// fonction a faire pour execve(line);
 		free(line);
 	}
 	clear_history();
-	return(0);
+	return (0);
 }

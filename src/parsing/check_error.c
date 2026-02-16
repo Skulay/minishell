@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 20:34:36 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 02:43:54 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/16 04:16:26 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ bool	check_tok(t_token *token)
 
 	if (!token || token->type != WORD)
 		return (false);
-
 	curr = token;
 	while (curr->next)
 	{

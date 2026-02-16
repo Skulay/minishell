@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:54:48 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 03:15:58 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/16 04:15:08 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ t_cmd	*parse_cmd(t_token *token)
 		if (token->type == WORD)
 			add_arg(curr, token->value);
 		else if (is_redir(token->type))
+		{
 			add_redir(curr, token);
+			token = token->next;
+		}
 		else if (token->type == PIPE)
 		{
 			curr->next = init_cmd();
@@ -35,22 +38,18 @@ t_cmd	*parse_cmd(t_token *token)
 	return (head);
 }
 
-int	parsing(t_token *token)
+t_cmd	*parsing(t_token *token)
 {
+	t_cmd	*cmd;
+
 	if (!token)
-		return (0);
+		return (NULL);
 	if (!check_error(token))
-		return (0);
+		return (NULL);
 	if (!check_tok(token))
-		return (0);
-	return(1);
+		return (NULL);
+	cmd = parse_cmd(token);
+	if (!cmd)
+		return (NULL);
+	return (cmd);
 }
-
-// verif de tout les type ERROR
-// verif faite atm -> commencer et finir par WORD sans duplication d'op a la suite
-
-// ajouter les commande dans une struct et les op pour savoir que faire avec quoi
-// cherche a comment implementer ca
-// voir avec tarek qui s'occupe de l'exec pour etre corda
-
-// voir pour clean proprement ! atm on a juste token de malloc

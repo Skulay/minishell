@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 11:03:45 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/14 21:21:33 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/16 04:16:13 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,3 @@ void	ft_tokadd_back(t_token **lst, t_token *new)
 	last = ft_toklast(*lst);
 	last->next = new;
 }
-
-

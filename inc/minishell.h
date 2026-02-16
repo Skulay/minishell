@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
+/*   Updated: 2026/02/16 04:18:40 by alehamad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -41,50 +53,56 @@ typedef struct s_redir
 	int				type;
 	char			*file;
 	struct s_redir	*next;
-} t_redir;
+}	t_redir;
 
 typedef struct s_cmd
 {
 	char			**arg_cmd;
 	t_redir			*redir;
 	struct s_cmd	*next;
-} t_cmd;
+}	t_cmd;
 
 // fonction principal
 
-
 // fonction utilitaires
 
-
 // lexer
-bool	is_space(char c);
-bool	is_operator(char c);
-bool	is_word(char c);
-bool	is_redir_out(char c);
-bool	is_redir_in(char c);
-bool	is_append(char c, char d);
-bool	is_heredoc(char c, char d);
-bool	is_pipe(char c);
-bool	is_error_syntax(char c, char d);
-char	*get_operator(char *line, int *i);
-char	*get_word(char *line, int *i);
-void	ft_tokadd_back(t_token **lst, t_token *new);
-t_type	what_type(char c, char d);
-t_token	*ft_toknew(char *content, t_type token_type);
-t_token	*ft_toklast(t_token *lst);
-t_token	*lexer(char *line);
+bool		is_space(char c);
+bool		is_operator(char c);
+bool		is_word(char c);
+bool		is_redir_out(char c);
+bool		is_redir_in(char c);
+bool		is_append(char c, char d);
+bool		is_heredoc(char c, char d);
+bool		is_pipe(char c);
+bool		is_error_syntax(char c, char d);
+char		*get_operator(char *line, int *i);
+char		*get_word(char *line, int *i);
+void		ft_tokadd_back(t_token **lst, t_token *new);
+t_type		what_type(char c, char d);
+t_token		*ft_toknew(char *content, t_type token_type);
+t_token		*ft_toklast(t_token *lst);
+t_token		*lexer(char *line);
 
 // Parsing
-int		parsing(t_token *token);
-bool	check_tok(t_token *token);
-bool	check_error(t_token *token);
+t_cmd		*parsing(t_token *token);
+t_cmd		*parse_cmd(t_token *token);
+bool		check_tok(t_token *token);
+bool		check_error(t_token *token);
+bool		is_redir(int type);
+void		add_redir(t_cmd *cmd, t_token *token);
+void		add_arg(t_cmd *cmd, char *arg);
 
 // clean up
-void	free_tok(t_token *token);
+void		free_tok(t_token *token);
+
+// init
+t_cmd		*init_cmd(void);
 
 // commande a executer built in(cd, env, pwd..ect)
 
 // debugg
-void	print_tokens(t_token *tokens);
+void		print_tokens(t_token *tokens);
+void		print_cmd(t_cmd *cmd);
 
 #endif

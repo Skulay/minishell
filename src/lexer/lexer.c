@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:33:21 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/15 01:55:26 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/16 04:16:00 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*get_word(char *line, int *i)
 		else if (is_space(line[*i]) || is_operator(line[*i]))
 			break ;
 		else
-		(*i)++;
+			(*i)++;
 	}
 	return (ft_substr(line, start, *i - start));
 }
@@ -94,12 +94,10 @@ t_token	*lexer(char *line)
 			i++;
 		if (!line[i])
 			break ;
-
 		if (is_operator(line[i]))
 			value = get_operator(line, &i);
 		else
 			value = get_word(line, &i);
-
 		ft_tokadd_back(&tokens,
 			ft_toknew(value, what_type(value[0], value[1])));
 	}
