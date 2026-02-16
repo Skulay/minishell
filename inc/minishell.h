@@ -36,11 +36,19 @@ typedef struct s_token
 
 // struct
 
-typedef struct s_data
+typedef struct s_redir
 {
-	char	**arg;
-	char	**my_env;
-}	t_data;
+	int				type;
+	char			*file;
+	struct s_redir	*next;
+} t_redir;
+
+typedef struct s_cmd
+{
+	char			**arg_cmd;
+	t_redir			*redir;
+	struct s_cmd	*next;
+} t_cmd;
 
 // fonction principal
 
@@ -75,7 +83,6 @@ bool	check_error(t_token *token);
 void	free_tok(t_token *token);
 
 // commande a executer built in(cd, env, pwd..ect)
-
 
 // debugg
 void	print_tokens(t_token *tokens);
