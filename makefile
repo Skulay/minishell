@@ -17,8 +17,15 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/cmd/export.c \
         $(SRC_DIR)/cmd/pwd.c \
         $(SRC_DIR)/cmd/unset.c \
+        $(SRC_DIR)/env/my_env.c \
+        $(SRC_DIR)/env/shlvl.c \
+        $(SRC_DIR)/expand/expand.c \
+        $(SRC_DIR)/expand/utils.c \
+        $(SRC_DIR)/expand/utils_args.c \
+        $(SRC_DIR)/expand/utils_redir.c \
         $(SRC_DIR)/debug/debug_lexer.c \
         $(SRC_DIR)/debug/debug_ast.c \
+        $(SRC_DIR)/debug/debug_env.c \
         $(SRC_DIR)/lexer/helper_type.c \
         $(SRC_DIR)/lexer/helper_type2.c \
         $(SRC_DIR)/lexer/lexer.c \
@@ -29,6 +36,7 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/parsing/utils_parsing.c \
         $(SRC_DIR)/struct/init_struct.c \
         $(SRC_DIR)/clean_up/free_tok.c \
+        $(SRC_DIR)/clean_up/free_tab.c \
         $(SRC_DIR)/clean_up/free_cmd.c
 
 OBJS = $(SRCS:.c=.o)

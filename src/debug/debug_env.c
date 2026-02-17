@@ -1,15 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   debug_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/10 10:57:41 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 07:37:16 by alehamad         ###   ########.fr       */
+/*   Created: 2026/02/17 06:55:38 by alehamad          #+#    #+#             */
+/*   Updated: 2026/02/17 07:38:20 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_pwd(char *env)
+#include "../../inc/minishell.h"
+
+void	print_env(t_data *data)
 {
+	int	i;
+
+	if (!data || !data->my_env)
+		return ;
+	i = 0;
+	while (data->my_env[i])
+	{
+		ft_putendl_fd(data->my_env[i], 1);
+		i++;
+	}
 }

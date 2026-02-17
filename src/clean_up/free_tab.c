@@ -1,15 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   free_tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/10 10:57:41 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 07:37:16 by alehamad         ###   ########.fr       */
+/*   Created: 2026/02/17 12:51:10 by alehamad          #+#    #+#             */
+/*   Updated: 2026/02/17 12:51:20 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_pwd(char *env)
+#include "../../inc/minishell.h"
+
+void	free_tab(char **tab)
 {
+	int	i;
+
+	if (!tab)
+		return ;
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }

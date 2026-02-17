@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 06:40:50 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 06:58:12 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 07:38:05 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_redir(t_redir *redir)
 {
-	t_redir *tmp;
+	t_redir	*tmp;
 
 	while (redir)
 	{
@@ -52,4 +52,3 @@ void	free_cmd(t_cmd *cmd)
 		curr = next;
 	}
 }
-
