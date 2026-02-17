@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 06:45:43 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 01:50:27 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,11 @@ t_cmd		*parse_cmd(t_token *token);
 bool		check_tok(t_token *token);
 bool		check_error(t_token *token);
 bool		is_redir(int type);
+bool		ft_have_quote(char *str);
 void		add_redir(t_cmd *cmd, t_token *token);
 void		add_arg(t_cmd *cmd, char *arg);
+void		ft_rm_quote(t_cmd *cmd);
+
 
 // clean up
 void		free_tok(t_token *token);

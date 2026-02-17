@@ -26,6 +26,7 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/parsing/parsing.c \
         $(SRC_DIR)/parsing/check_error.c \
         $(SRC_DIR)/parsing/add_argument.c \
+        $(SRC_DIR)/parsing/utils_parsing.c \
         $(SRC_DIR)/struct/init_struct.c \
         $(SRC_DIR)/clean_up/free_tok.c \
         $(SRC_DIR)/clean_up/free_cmd.c
