@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:57:33 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:13:43 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:36:02 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*add_str(char *res, char *add)
 	return (new);
 }
 
-char	*get_env_value(t_data *data, char *var)
+char	*my_get_env(t_data *data, char *var)
 {
 	int	i;
 	int	len;

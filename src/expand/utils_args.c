@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:09:07 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:19:26 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:36:30 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*extract_var(char *str, int *i, t_data *data)
 	while (ft_isalnum(str[*i]) || str[*i] == '_')
 		(*i)++;
 	var = ft_substr(str, start, *i - start);
-	value = get_env_value(data, var);
+	value = my_get_env(data, var);
 	free(var);
 	if (!value)
 		value = ft_strdup("");
@@ -40,7 +40,7 @@ char	*extract_var(char *str, int *i, t_data *data)
 	return (value);
 }
 
-void	handle_dollar(t_exstruct *ex, char *str, t_data *data)
+void	ft_dollar(t_exstruct *ex, char *str, t_data *data)
 {
 	char	*value;
 
@@ -51,7 +51,7 @@ void	handle_dollar(t_exstruct *ex, char *str, t_data *data)
 	free(value);
 }
 
-char	*expand_with_flag(char *str, t_data *data, int *make_split)
+char	*expand_flag(char *str, t_data *data, int *make_split)
 {
 	t_exstruct	ex;
 
@@ -70,7 +70,7 @@ char	*expand_with_flag(char *str, t_data *data, int *make_split)
 		else if (ex.state == DUAL_QUOTE && str[ex.i] == '"')
 			ex.state = NORMAL;
 		else if (str[ex.i] == '$' && ex.state != SOLO_QUOTE)
-			handle_dollar(&ex, str, data);
+			ft_dollar(&ex, str, data);
 		else
 			ex.result = add_char(ex.result, str[ex.i]);
 		ex.i++;
@@ -86,7 +86,7 @@ char	**expand_split(char *str, t_data *data)
 	int		make_split;
 
 	make_split = 0;
-	expanded = expand_with_flag(str, data, &make_split);
+	expanded = expand_flag(str, data, &make_split);
 	if (make_split)
 		result = ft_split(expanded, ' ');
 	else

@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:23:15 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:39:06 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define PROMPT "minishell> "
 
-// enum pour le lexer avec ca liste chainer
+// enum
 typedef enum e_expand
 {
 	NORMAL,
@@ -45,6 +45,8 @@ typedef enum e_type
 	ERROR
 }	t_type;
 
+// liste chainer lexer
+
 typedef struct s_token
 {
 	char			*value;
@@ -62,6 +64,7 @@ typedef struct s_data
 }	t_data;
 
 // struct pour l'expand
+
 typedef struct s_exstruct
 {
 	int			i;
@@ -70,6 +73,7 @@ typedef struct s_exstruct
 	char		*result;
 	t_data		*env;
 }	t_exstruct;
+
 // struct redirection & cmd
 
 typedef struct s_redir
@@ -122,8 +126,8 @@ void		add_arg(t_cmd *cmd, char *arg);
 void		expand_redirs(t_cmd *cmd, t_data *data);
 void		expand_args(t_cmd *cmd, t_data *data);
 void		ft_expand(t_cmd *cmd, t_data *data);
-void		handle_dollar(t_exstruct *ex, char *str, t_data *data);
-char		*expand_with_flag(char *str, t_data *data, int *make_split);
+void		ft_dollar(t_exstruct *ex, char *str, t_data *data);
+char		*expand_flag(char *str, t_data *data, int *make_split);
 char		**expand_split(char *str, t_data *data);
 char		**append_all(char **dest, char **src);
 int			heredoc_not_quoted(t_redir *redir);
@@ -132,7 +136,7 @@ char		*add_char(char *str, char c);
 char		*add_str(char *res, char *add);
 char		*expand_var_quote(char *str, t_data *env);
 char		*rm_quotes(char *str);
-char		*get_env_value(t_data *data, char *var);
+char		*my_get_env(t_data *data, char *var);
 char		*extract_var(char *str, int *i, t_data *data);
 int			tab_len(char **tab);
 char		**single_to_tab(char *str);

@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 10:42:39 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:21:18 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:38:12 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*add_var(char *res, char *str, int *i, t_data *env)
 	while (ft_isalnum(str[*i]) || str[*i] == '_')
 		(*i)++;
 	var = ft_substr(str, start, *i - start);
-	value = get_env_value(env, var);
+	value = my_get_env(env, var);
 	if (value)
 		res = add_str(res, value);
 	free(var);
@@ -73,7 +73,7 @@ char	*add_var(char *res, char *str, int *i, t_data *env)
 	return (res);
 }
 
-void	handle_char(t_exstruct *ex, char *str)
+void	check_char(t_exstruct *ex, char *str)
 {
 	if (ex->state == NORMAL && str[ex->i] == '\'')
 		ex->state = SOLO_QUOTE;
@@ -100,7 +100,7 @@ char	*expand_var_quote(char *str, t_data *env)
 	ex.env = env;
 	while (str[ex.i])
 	{
-		handle_char(&ex, str);
+		check_char(&ex, str);
 		ex.i++;
 	}
 	return (ex.result);
