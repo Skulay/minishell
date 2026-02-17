@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 06:55:38 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 06:55:58 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 07:38:20 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_env(t_data *data)
 	int	i;
 
 	if (!data || !data->my_env)
-		return;
+		return ;
 	i = 0;
 	while (data->my_env[i])
 	{

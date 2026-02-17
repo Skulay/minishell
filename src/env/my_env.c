@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   my_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 05:47:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 07:24:02 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 07:36:48 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ t_data	*craft_my_env(void)
 	path = getcwd(NULL, 0);
 	my_envtmp[0] = ft_strjoin("PWD=", path);
 	my_envtmp[1] = ft_strjoin("SHLVL=", "1");
-	my_envtmp[2] = ft_strjoin("PATH=", "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
+	my_envtmp[2] = ft_strjoin("PATH=",
+			"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin");
 	my_envtmp[3] = ft_strjoin("_=", "./minishell");
 	my_envtmp[4] = NULL;
 	env->my_env = my_envtmp;
