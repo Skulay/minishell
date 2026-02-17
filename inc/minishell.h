@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:03:14 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:21:41 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_exstruct
 	t_expand	state;
 	int			make_split;
 	char		*result;
+	t_data		*env;
 }	t_exstruct;
 // struct redirection & cmd
 
@@ -135,7 +136,6 @@ char		*get_env_value(t_data *data, char *var);
 char		*extract_var(char *str, int *i, t_data *data);
 int			tab_len(char **tab);
 char		**single_to_tab(char *str);
-
 
 // env
 t_data		*make_my_env(char **env);

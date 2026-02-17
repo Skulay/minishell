@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 10:42:39 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 12:57:44 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:21:18 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,44 +73,35 @@ char	*add_var(char *res, char *str, int *i, t_data *env)
 	return (res);
 }
 
+void	handle_char(t_exstruct *ex, char *str)
+{
+	if (ex->state == NORMAL && str[ex->i] == '\'')
+		ex->state = SOLO_QUOTE;
+	else if (ex->state == NORMAL && str[ex->i] == '"')
+		ex->state = DUAL_QUOTE;
+	else if (ex->state == SOLO_QUOTE && str[ex->i] == '\'')
+		ex->state = NORMAL;
+	else if (ex->state == DUAL_QUOTE && str[ex->i] == '"')
+		ex->state = NORMAL;
+	else if (str[ex->i] == '$' && ex->state != SOLO_QUOTE)
+		ex->result = add_var(ex->result, str, &ex->i, ex->env);
+	else
+		ex->result = add_char(ex->result, str[ex->i]);
+}
+
 char	*expand_var_quote(char *str, t_data *env)
 {
-	int			i;
-	t_expand	state;
-	char		*result;
+	t_exstruct	ex;
 
-	state = NORMAL;
-	i = 0;
-	result = ft_strdup("");
-	while (str[i])
+	ex.i = 0;
+	ex.state = NORMAL;
+	ex.make_split = 0;
+	ex.result = ft_strdup("");
+	ex.env = env;
+	while (str[ex.i])
 	{
-		if (state == NORMAL)
-		{
-			if (str[i] == '\'')
-				state = SOLO_QUOTE;
-			else if (str[i] == '"')
-				state = DUAL_QUOTE;
-			else if (str[i] == '$')
-				result = add_var(result, str, &i, env);
-			else
-				result = add_char(result, str[i]);
-		}
-		else if (state == SOLO_QUOTE)
-		{
-			if (str[i] == '\'')
-				state = NORMAL;
-			else
-				result = add_char(result, str[i]);
-		}
-		else if (state == DUAL_QUOTE)
-		{
-			if (str[i] == '"')
-				state = NORMAL;
-			else if (str[i] == '$')
-				result = add_var(result, str, &i, env);
-			else
-				result = add_char(result, str[i]);
-		}
-		i++;
+		handle_char(&ex, str);
+		ex.i++;
 	}
+	return (ex.result);
 }

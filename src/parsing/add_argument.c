@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 03:11:01 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 12:49:19 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:15:02 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_redir(int type)
 	return (true);
 }
 
-int quote_or_not(char *str)
+int	quote_or_not(char *str)
 {
 	int	i;
 

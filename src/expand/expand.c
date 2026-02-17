@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 10:36:48 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 12:43:23 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:13:14 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	expand_redirs(t_cmd *cmd, t_data *data)
 {
-	t_redir *tmp;
+	t_redir	*tmp;
 
 	tmp = cmd->redir;
 	while (tmp)
@@ -34,7 +34,7 @@ void	expand_args(t_cmd *cmd, t_data *data)
 	int		i;
 
 	if (!cmd->arg_cmd)
-		return;
+		return ;
 	new_args = NULL;
 	i = 0;
 	while (cmd->arg_cmd[i])

@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:57:33 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:02:51 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:13:43 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int	tab_len(char **tab)
 {
-	int i;
+	int	i;
+
+	i = 0;
 	if (!tab)
 		return (0);
-	i = 0;
 	while (tab[i])
 		i++;
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:09:07 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:10:29 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:19:26 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*extract_var(char *str, int *i, t_data *data)
 {
 	char	*var;
 	char	*value;
-	int	start;
+	int		start;
 
 	(*i)++;
 	if (str[*i] == '?')
@@ -42,20 +42,18 @@ char	*extract_var(char *str, int *i, t_data *data)
 
 void	handle_dollar(t_exstruct *ex, char *str, t_data *data)
 {
-	char *value;
+	char	*value;
 
 	value = extract_var(str, &ex->i, data);
-
 	if (ex->state == NORMAL && value && ft_strchr(value, ' '))
 		ex->make_split = 1;
-
 	ex->result = add_str(ex->result, value);
 	free(value);
 }
 
 char	*expand_with_flag(char *str, t_data *data, int *make_split)
 {
-	t_exstruct ex;
+	t_exstruct	ex;
 
 	ex.i = 0;
 	ex.state = NORMAL;
@@ -81,7 +79,7 @@ char	*expand_with_flag(char *str, t_data *data, int *make_split)
 	return (ex.result);
 }
 
-char **expand_split(char *str, t_data *data)
+char	**expand_split(char *str, t_data *data)
 {
 	char	*expanded;
 	char	**result;
@@ -89,12 +87,10 @@ char **expand_split(char *str, t_data *data)
 
 	make_split = 0;
 	expanded = expand_with_flag(str, data, &make_split);
-
 	if (make_split)
 		result = ft_split(expanded, ' ');
 	else
 		result = single_to_tab(expanded);
-
 	free(expanded);
 	return (result);
 }
