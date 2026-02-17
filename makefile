@@ -17,8 +17,11 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/cmd/export.c \
         $(SRC_DIR)/cmd/pwd.c \
         $(SRC_DIR)/cmd/unset.c \
+        $(SRC_DIR)/env/env.c \
+        $(SRC_DIR)/env/shlvl.c \
         $(SRC_DIR)/debug/debug_lexer.c \
         $(SRC_DIR)/debug/debug_ast.c \
+        $(SRC_DIR)/debug/debug_env.c \
         $(SRC_DIR)/lexer/helper_type.c \
         $(SRC_DIR)/lexer/helper_type2.c \
         $(SRC_DIR)/lexer/lexer.c \

@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 06:45:43 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 07:11:07 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdbool.h>
+# include <limits.h>
 # include "../libft/libft.h"
 
 # define PROMPT "minishell> "
@@ -46,7 +47,7 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
-// struct
+// struct redirection & cmd
 
 typedef struct s_redir
 {
@@ -61,6 +62,13 @@ typedef struct s_cmd
 	t_redir			*redir;
 	struct s_cmd	*next;
 }	t_cmd;
+
+// struct env
+
+typedef struct s_data
+{
+	char	**my_env;
+}	t_data;
 
 // fonction principal
 
@@ -93,6 +101,12 @@ bool		is_redir(int type);
 void		add_redir(t_cmd *cmd, t_token *token);
 void		add_arg(t_cmd *cmd, char *arg);
 
+// env
+t_data		*make_my_env(char **env);
+t_data		*craft_my_env(void);
+t_data		*copy_my_env(char **env);
+int			maj_shlvl(char **env);
+
 // clean up
 void		free_tok(t_token *token);
 void		free_cmd(t_cmd *cmd);
@@ -105,5 +119,6 @@ t_cmd		*init_cmd(void);
 // debugg
 void		print_tokens(t_token *tokens);
 void		print_cmd(t_cmd *cmd);
+void		print_env(t_data *data);
 
 #endif
