@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:09:07 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:00:38 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:10:29 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*extract_var(char *str, int *i, t_data *data)
 	free(var);
 	if (!value)
 		value = ft_strdup("");
+	else
+		value = ft_strdup(value);
 	(*i)--;
 	return (value);
 }
