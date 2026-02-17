@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:21:41 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:23:15 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
+// struct env
+
+typedef struct s_data
+{
+	char	**my_env;
+	int		last_exit_code;
+}	t_data;
+
 // struct pour l'expand
 typedef struct s_exstruct
 {
@@ -78,14 +86,6 @@ typedef struct s_cmd
 	t_redir			*redir;
 	struct s_cmd	*next;
 }	t_cmd;
-
-// struct env
-
-typedef struct s_data
-{
-	char	**my_env;
-	int		last_exit_code;
-}	t_data;
 
 // fonction principal
 
