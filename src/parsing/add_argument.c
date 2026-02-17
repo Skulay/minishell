@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 03:11:01 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 04:16:42 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 12:49:19 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,19 @@ bool	is_redir(int type)
 	if (type == WORD || type == PIPE)
 		return (false);
 	return (true);
+}
+
+int quote_or_not(char *str)
+{
+	int	i;
+
+	while (str[i])
+	{
+		if (str[i] == '\'' || str[i] == '\"')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 void	add_arg(t_cmd *cmd, char *arg)
@@ -53,6 +66,7 @@ void	add_redir(t_cmd *cmd, t_token *token)
 		return ;
 	new->type = token->type;
 	new->file = ft_strdup(token->next->value);
+	new->quote = quote_or_not(token->next->value);
 	new->next = NULL;
 	if (!cmd->redir)
 		cmd->redir = new;

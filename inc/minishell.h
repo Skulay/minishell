@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 07:11:07 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:03:14 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@
 # define PROMPT "minishell> "
 
 // enum pour le lexer avec ca liste chainer
+typedef enum e_expand
+{
+	NORMAL,
+	SOLO_QUOTE,
+	DUAL_QUOTE
+}	t_expand;
 
 typedef enum e_type
 {
@@ -47,12 +53,21 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
+// struct pour l'expand
+typedef struct s_exstruct
+{
+	int			i;
+	t_expand	state;
+	int			make_split;
+	char		*result;
+}	t_exstruct;
 // struct redirection & cmd
 
 typedef struct s_redir
 {
 	int				type;
 	char			*file;
+	int				quote;
 	struct s_redir	*next;
 }	t_redir;
 
@@ -68,6 +83,7 @@ typedef struct s_cmd
 typedef struct s_data
 {
 	char	**my_env;
+	int		last_exit_code;
 }	t_data;
 
 // fonction principal
@@ -93,13 +109,33 @@ t_token		*ft_toklast(t_token *lst);
 t_token		*lexer(char *line);
 
 // Parsing
-t_cmd		*parsing(t_token *token);
+t_cmd		*parsing(t_token *token, t_data *data);
 t_cmd		*parse_cmd(t_token *token);
 bool		check_tok(t_token *token);
 bool		check_error(t_token *token);
 bool		is_redir(int type);
 void		add_redir(t_cmd *cmd, t_token *token);
 void		add_arg(t_cmd *cmd, char *arg);
+
+// EXPAND
+void		expand_redirs(t_cmd *cmd, t_data *data);
+void		expand_args(t_cmd *cmd, t_data *data);
+void		ft_expand(t_cmd *cmd, t_data *data);
+void		handle_dollar(t_exstruct *ex, char *str, t_data *data);
+char		*expand_with_flag(char *str, t_data *data, int *make_split);
+char		**expand_split(char *str, t_data *data);
+char		**append_all(char **dest, char **src);
+int			heredoc_not_quoted(t_redir *redir);
+char		*add_var(char *res, char *str, int *i, t_data *env);
+char		*add_char(char *str, char c);
+char		*add_str(char *res, char *add);
+char		*expand_var_quote(char *str, t_data *env);
+char		*rm_quotes(char *str);
+char		*get_env_value(t_data *data, char *var);
+char		*extract_var(char *str, int *i, t_data *data);
+int			tab_len(char **tab);
+char		**single_to_tab(char *str);
+
 
 // env
 t_data		*make_my_env(char **env);
@@ -110,6 +146,7 @@ int			maj_shlvl(char **env);
 // clean up
 void		free_tok(t_token *token);
 void		free_cmd(t_cmd *cmd);
+void		free_tab(char **tab);
 
 // init
 t_cmd		*init_cmd(void);

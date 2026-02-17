@@ -19,6 +19,10 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/cmd/unset.c \
         $(SRC_DIR)/env/my_env.c \
         $(SRC_DIR)/env/shlvl.c \
+        $(SRC_DIR)/expand/expand.c \
+        $(SRC_DIR)/expand/utils.c \
+        $(SRC_DIR)/expand/utils_args.c \
+        $(SRC_DIR)/expand/utils_redir.c \
         $(SRC_DIR)/debug/debug_lexer.c \
         $(SRC_DIR)/debug/debug_ast.c \
         $(SRC_DIR)/debug/debug_env.c \
@@ -31,6 +35,7 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/parsing/add_argument.c \
         $(SRC_DIR)/struct/init_struct.c \
         $(SRC_DIR)/clean_up/free_tok.c \
+        $(SRC_DIR)/clean_up/free_tab.c \
         $(SRC_DIR)/clean_up/free_cmd.c
 
 OBJS = $(SRCS:.c=.o)
