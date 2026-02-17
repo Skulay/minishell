@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 01:43:29 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 01:58:29 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:54:16 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	ft_rm_quote(t_cmd *cmd)
 		curr = curr->next;
 	}
 }
-
