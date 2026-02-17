@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:50:52 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:00:43 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,10 @@ t_data		*make_my_env(char **env);
 t_data		*craft_my_env(void);
 t_data		*copy_my_env(char **env);
 int			maj_shlvl(char **env);
+
+// execution
+
+int exec_cmd(t_cmd *command);
 
 // clean up
 void		free_tok(t_token *token);
