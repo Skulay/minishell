@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:41 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/18 13:52:10 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/18 13:55:59 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	ft_pwd(t_data *data)
 	i = 0;
 	while (data->my_env[i])
 	{
-		if (ft_strncmp(data->my_env[i], "PATH=", 5) == 0)
+		if (ft_strncmp(data->my_env[i], "PWD=", 4) == 0)
 		{
-			ft_printf("%s\n", data->my_env[i]);
+			ft_printf("%s\n", data->my_env[i] + 4);
 			return ;
 		}
 		i++;
