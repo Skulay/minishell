@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/18 02:10:03 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/18 22:52:43 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,9 @@ int			maj_shlvl(char **env);
 // execution
 
 int exec_cmd(t_cmd *command, t_data *data);
+char	*findvalidpath(char **env, char *binary);
+char	*testpath(char **paths, char *binary);
+char	*getpath(char **env);
 
 // clean up
 void		free_tok(t_token *token);

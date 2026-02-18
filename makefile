@@ -38,7 +38,8 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/clean_up/free_tok.c \
         $(SRC_DIR)/clean_up/free_tab.c \
         $(SRC_DIR)/clean_up/free_cmd.c \
-        $(SRC_DIR)/exec/exec.c 
+        $(SRC_DIR)/exec/exec.c \
+        $(SRC_DIR)/exec/path_resolution.c
 
 OBJS = $(SRCS:.c=.o)
 
