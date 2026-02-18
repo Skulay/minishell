@@ -6,19 +6,22 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:58:03 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 03:56:38 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/18 02:48:09 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-// void	ft_env(t_data *data)
-// {
-// 	int	i;
+// env with no options or arguments
 
-// 	while (data->my_env[i])
-// 	{
-// 		ft_printf("%s\n", data->my_env[i]);
-// 		i++;
-// 	}
-// }
+void	ft_env(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->my_env[i])
+	{
+		ft_printf("%s\n", data->my_env[i]);
+		i++;
+	}
+}
