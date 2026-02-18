@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 15:01:34 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/18 02:11:11 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int ac, char **av, char **env)
 		print_cmd(cmd); // DEBUG
 		// print_env(data); // DEBUG
 		// EXEC
-		exec_cmd(cmd);
+		exec_cmd(cmd, data);
 		add_history(line);
 		// CLEAN
 		free_cmd(cmd);

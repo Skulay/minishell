@@ -3,31 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:47:02 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/17 15:43:49 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/18 02:10:18 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int exec_cmd(t_cmd *command)
+int	exec_cmd(t_cmd *command, t_data *data)
 {
-    pid_t pid;
-    int status;
+	pid_t	pid;
+	int		status;
 
-    pid = fork();
-    if(pid == 0)
-    {
-        char *environ[] = { NULL }; // var de test, en attendant d'avoir une vrai variable qui stock les vars d'environnements
-        execve(command->arg_cmd[0], command->arg_cmd, environ);
-        perror("exeve :");
-        exit(EXIT_FAILURE);
-    }
-    else if(pid > 0)
-        waitpid(pid, &status, 0);
-    else
-        perror("fork :");
-    return 0; 
+	pid = fork();
+	if(pid == 0)
+	{
+		execve(command->arg_cmd[0], command->arg_cmd, data->my_env);
+		perror("exeve :");
+		exit(EXIT_FAILURE);
+	}
+	else if(pid > 0)
+		waitpid(pid, &status, 0);
+	else
+		perror("fork :");
+	return 0;
 }
