@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/18 22:52:43 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/19 23:11:45 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,9 @@ char	*findvalidpath(char **env, char *binary);
 char	*testpath(char **paths, char *binary);
 char	*getpath(char **env);
 
+// redirection
+
+int redirection_manager(t_redir *redir);
 // clean up
 void		free_tok(t_token *token);
 void		free_cmd(t_cmd *cmd);
