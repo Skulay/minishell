@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:47:02 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/18 22:56:23 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/19 23:16:50 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	exec_cmd(t_cmd *command, t_data *data)
 	pid = fork();
 	if (pid == 0)
 	{
+		if (redirection_manager(command->redir) != 0)
+			exit(1);
 		if (!valid_path)
 		{
 			ft_putstr_fd("Command not found \n", 2);
