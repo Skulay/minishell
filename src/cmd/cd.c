@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:26 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/18 14:13:51 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/19 00:29:16 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@
 
 void	ft_cd(t_data *data, char *str)
 {
-
+	chdir(str);
 }
