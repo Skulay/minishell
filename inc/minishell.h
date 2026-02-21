@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/18 02:10:03 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/21 12:46:05 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,8 @@ void		free_tab(char **tab);
 t_cmd		*init_cmd(void);
 
 // commande a executer built in(cd, env, pwd..ect)
+void	ft_export(t_data *data);
+void	ft_env(t_data *data);
 
 // debugg
 void		print_tokens(t_token *tokens);

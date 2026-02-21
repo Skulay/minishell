@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:59:58 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/21 12:44:33 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/21 12:47:33 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_strcpy(char *s1, char *s2)
 	int	i;
 
 	i = 0;
-	while (s2)
+	while (s2[i])
 	{
 		s1[i] = s2[i];
 		i++;
@@ -75,14 +75,14 @@ void	ft_export(t_data *data)
 	i = 0;
 	export = malloc(sizeof(char *) * tab_len(data->my_env) + 1);
 	if (!export)
-		return (NULL);
+		return ;
 	while (data->my_env[i])
 	{
 		export[i] = malloc(sizeof(char) * strlen(data->my_env[i]) + 1);
 		if (!export[i])
 		{
 			free_tab(export);
-			return (NULL);
+			return ;
 		}
 		ft_strcpy(export[i], data->my_env[i]);
 		i++;

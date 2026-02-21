@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/18 02:11:11 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/21 12:50:12 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int ac, char **av, char **env)
 		cmd = parsing(token, data);
 		print_cmd(cmd); // DEBUG
 		// print_env(data); // DEBUG
+		// ft_export(data); // TEST EXPORT
 		// EXEC
 		exec_cmd(cmd, data);
 		add_history(line);
