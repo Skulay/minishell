@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/18 02:11:11 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/21 00:38:07 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,17 @@ int	main(int ac, char **av, char **env)
 		token = lexer(line);
 		print_tokens(token); // DEBUG
 		cmd = parsing(token, data);
-		print_cmd(cmd); // DEBUG
+		// print_cmd(cmd); // DEBUG
 		// print_env(data); // DEBUG
 		// EXEC
+		if (ft_strncmp(cmd->arg_cmd[0], "exit", 4) == 0) // DEBUG
+			ft_exit(cmd, data);                          // DEBUG
 		exec_cmd(cmd, data);
 		add_history(line);
 		// CLEAN
 		free_cmd(cmd);
 		free(line);
 	}
-	//rl_clear_history();
+	// rl_clear_history();
 	return (0);
 }
