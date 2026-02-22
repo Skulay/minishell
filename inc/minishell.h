@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 19:26:02 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 20:15:02 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,8 +177,8 @@ void				free_tab(char **tab);
 t_cmd				*init_cmd(void);
 
 // commande a executer built in(cd, env, pwd..ect)
-int					ft_unset(t_data *data, char *unset);
-void				ft_cd(t_data *data, char *str);
+int					ft_unset(t_data *data, char **args);
+int					ft_cd(t_data *data, char **args);
 int					ft_echo(t_cmd *cmd);
 int					ft_env(t_data *data);
 int					ft_export(t_data *data, char **args);

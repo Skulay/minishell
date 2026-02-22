@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 17:41:21 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 19:21:42 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 19:55:50 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ void	export_error(char *arg)
 
 int	valid_identifier(char *str)
 {
-	int i;
+	int	i;
 
-	i = 0;
-	if (!str || (!ft_isalpha(str[0]) && str[0] != '_'))
+	if (!str || str[0] == '=')
 		return (0);
+	if (!ft_isalpha(str[0]) && str[0] != '_')
+		return (0);
+	i = 1;
 	while (str[i] && str[i] != '=')
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')
