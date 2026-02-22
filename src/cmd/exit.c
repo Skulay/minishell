@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/21 01:03:18 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/22 06:08:16 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	is_numeric(char *str)
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	if (!str)
+	if (!str[i])
 		return (0);
 	while (str[i])
 	{

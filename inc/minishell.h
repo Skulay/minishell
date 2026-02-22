@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/21 12:53:54 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 03:26:40 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,9 +153,11 @@ int					exec_cmd(t_cmd *command, t_data *data);
 char				*findvalidpath(char **env, char *binary);
 char				*testpath(char **paths, char *binary);
 char				*getpath(char **env);
+void				execute_pipeline(t_cmd *cmd, t_data *data);
+int					is_builtin(char *str);
+int					exec_builtin(t_cmd *cmd, t_data *data);
 
 // redirection
-
 int					redirection_manager(t_redir *redir);
 // clean up
 void				free_tok(t_token *token);
@@ -166,6 +168,12 @@ void				free_tab(char **tab);
 t_cmd				*init_cmd(void);
 
 // commande a executer built in(cd, env, pwd..ect)
+char				**ft_unset(t_data *data, char *unset);
+void				ft_cd(t_data *data, char *str);
+int					ft_echo(t_cmd *cmd);
+void				ft_env(t_data *data);
+void				ft_export(t_data *data);
+void				ft_pwd(t_data *data);
 int					ft_exit(t_cmd *cmd, t_data *data);
 
 // debugg

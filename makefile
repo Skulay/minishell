@@ -40,7 +40,10 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/clean_up/free_cmd.c \
         $(SRC_DIR)/exec/exec.c \
         $(SRC_DIR)/exec/path_resolution.c \
-        $(SRC_DIR)/redirections/redir.c
+        $(SRC_DIR)/redirections/redir.c \
+        $(SRC_DIR)/exec/pipes.c \
+        $(SRC_DIR)/exec/is_builtin.c \
+        $(SRC_DIR)/exec/exec_builtin.c
 
 OBJS = $(SRCS:.c=.o)
 
