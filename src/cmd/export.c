@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:59:58 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 11:32:25 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 18:07:37 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@
 // gerer les arg apres export actuellement rien est gerer
 //
 
+int	ft_strcmp_equal(char *s1, char *s2)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+	{
+		if (s1[i + 1] == '=' || s2[i + 1] == '=')
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
 void	ft_print_export(char **export)
 {
 	int	i;
@@ -27,7 +41,7 @@ void	ft_print_export(char **export)
 	i = 0;
 	while (export[i])
 	{
-		printf("export %s\n", export[i]);
+		printf("declare -x %s\n", export[i]);
 		i++;
 	}
 }
@@ -47,7 +61,7 @@ void	ft_sort_char_tab(char **export)
 		i = 0;
 		while (export[i] && export[i + 1])
 		{
-			if (strcmp(export[i], export[i + 1]) > 0)
+			if (ft_strcmp_equal(export[i], export[i + 1]) > 0)
 			{
 				tmp = export[i];
 				export[i] = export[i + 1];
@@ -62,17 +76,28 @@ void	ft_sort_char_tab(char **export)
 void	ft_strcpy(char *s1, char *s2)
 {
 	int	i;
+	int	j;
+	int	first;
 
+	j = 0;
 	i = 0;
+	first = 1;
 	while (s2[i])
 	{
-		s1[i] = s2[i];
-		i++;
+		if (s1[j - 1] == '=' && first)
+		{
+			s1[j++] = '\"';
+			first = 0;
+		}
+		s1[j++] = s2[i++];
 	}
-	s1[i] = '\0';
+	if (first)
+		s1[j++] = '\"';
+	s1[j++] = '\"';
+	s1[j] = '\0';
 }
 
-void	ft_export(t_data *data)
+void	ft_export_no_arg(t_data *data)
 {
 	int		i;
 	char	**export;
@@ -83,7 +108,7 @@ void	ft_export(t_data *data)
 		return ;
 	while (data->my_env[i])
 	{
-		export[i] = malloc(sizeof(char) * strlen(data->my_env[i]) + 1);
+		export[i] = malloc(sizeof(char) * strlen(data->my_env[i]) + 3);
 		if (!export[i])
 		{
 			free_tab(export);

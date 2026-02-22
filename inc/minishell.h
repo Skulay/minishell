@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 11:06:56 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 17:41:59 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ int					ft_unset(t_data *data, char *unset);
 void				ft_cd(t_data *data, char *str);
 int					ft_echo(t_cmd *cmd);
 int					ft_env(t_data *data);
-void				ft_export(t_data *data);
+void				ft_export_no_arg(t_data *data);
 int					ft_pwd(t_data *data);
 int					ft_exit(t_cmd *cmd, t_data *data);
 
