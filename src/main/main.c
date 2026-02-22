@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/21 14:35:25 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 06:14:33 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,17 @@ int	main(int ac, char **av, char **env)
 		// print_env(data); // DEBUG
 		// ft_export(data); // TEST EXPORT
 		// EXEC
-		if (ft_strncmp(cmd->arg_cmd[0], "exit", 4) == 0) // DEBUG
-			ft_exit(cmd, data);                          // DEBUG
+		if (cmd && cmd->arg_cmd && cmd->arg_cmd[0])
+		{
+			if (is_builtin(cmd->arg_cmd[0]))
+				exec_builtin(cmd, data);
+		}
 		exec_cmd(cmd, data);
 		add_history(line);
 		// CLEAN
 		free_cmd(cmd);
 		free(line);
 	}
-	// rl_clear_history();
+	rl_clear_history();
 	return (0);
 }

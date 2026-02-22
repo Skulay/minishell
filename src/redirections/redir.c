@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 22:52:33 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/20 03:30:47 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/22 05:57:51 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static int	ft_redir_in(t_redir *redir)
 		return (perror(redir->file), 1);
 	dup2(fd, STDIN_FILENO);
 	close(fd);
+	return (0);
 }
 
 static int	ft_redir_out(t_redir *redir)
@@ -50,12 +51,12 @@ int	redirection_manager(t_redir *redir)
 {
 	while (redir)
 	{
-		if (redir->type == REDIR_OUT)
-			ft_redir_out(redir);
-		else if (redir->type == APPEND)
-			ft_append(redir);
-		else if (redir->type == REDIR_IN)
-			ft_redir_in(redir);
+		if (redir->type == REDIR_OUT && ft_redir_out(redir) != 0)
+			return (1);
+		else if (redir->type == APPEND && ft_append(redir) != 0)
+			return (1);
+		else if (redir->type == REDIR_IN && ft_redir_in(redir) != 0)
+			return (1);
 		redir = redir->next;
 	}
 	return (0);

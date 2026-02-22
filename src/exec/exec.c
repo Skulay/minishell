@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:47:02 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/19 23:16:50 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/22 06:01:20 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,27 @@
 
 int	exec_cmd(t_cmd *command, t_data *data)
 {
-	pid_t	pid;
-	int		status;
-	char	*valid_path;
+	int	stdin_original;
+	int	stdout_original;
 
 	if (!command || !command->arg_cmd || !command->arg_cmd[0])
 		return (0);
-	valid_path = findvalidpath(data->my_env, command->arg_cmd[0]);
-	pid = fork();
-	if (pid == 0)
+	if (!command->next && is_builtin(command->arg_cmd[0]))
 	{
+		stdin_original = dup(STDIN_FILENO);
+		stdout_original = dup(STDOUT_FILENO);
 		if (redirection_manager(command->redir) != 0)
-			exit(1);
-		if (!valid_path)
 		{
-			ft_putstr_fd("Command not found \n", 2);
-			exit(127);
+			data->last_exit_code = 1;
+			return (1);
 		}
-		execve(valid_path, command->arg_cmd, data->my_env);
-		perror("exeve");
-		exit(126);
+		data->last_exit_code = exec_builtin(command, data);
+		dup2(stdin_original, STDIN_FILENO);
+		dup2(stdout_original, STDOUT_FILENO);
+		close(stdin_original);
+		close(stdout_original);
+		return (0);
 	}
-	else if (pid > 0)
-		waitpid(pid, &status, 0);
-	else
-		perror("fork");
-	free(valid_path);
+	execute_pipeline(command, data);
 	return (0);
 }
