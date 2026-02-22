@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:58:03 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/21 12:27:33 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 11:02:57 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int	have_value(char *str)
 	if (str[i] == '=' && str[i + 1])
 		return (1);
 	return (0);
-
 }
 
-void	ft_env(t_data *data)
+int	ft_env(t_data *data)
 {
 	int	i;
 
@@ -40,4 +39,6 @@ void	ft_env(t_data *data)
 			ft_printf("%s\n", data->my_env[i]);
 		i++;
 	}
+	return (0);
 }
+

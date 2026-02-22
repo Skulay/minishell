@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 03:26:40 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/22 11:06:56 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,12 +168,12 @@ void				free_tab(char **tab);
 t_cmd				*init_cmd(void);
 
 // commande a executer built in(cd, env, pwd..ect)
-char				**ft_unset(t_data *data, char *unset);
+int					ft_unset(t_data *data, char *unset);
 void				ft_cd(t_data *data, char *str);
 int					ft_echo(t_cmd *cmd);
-void				ft_env(t_data *data);
+int					ft_env(t_data *data);
 void				ft_export(t_data *data);
-void				ft_pwd(t_data *data);
+int					ft_pwd(t_data *data);
 int					ft_exit(t_cmd *cmd, t_data *data);
 
 // debugg

@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:58:18 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/18 14:12:46 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 11:07:18 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // unset with no options
 
-char	**ft_unset(t_data *data, char *unset)
+int	ft_unset(t_data *data, char *unset)
 {
 	int		i;
 	int		j;
@@ -26,7 +26,7 @@ char	**ft_unset(t_data *data, char *unset)
 	unset_len = ft_strlen(unset);
 	new = malloc(sizeof(char *) * tab_len(data->my_env) + 1);
 	if (!new)
-		return (NULL);
+		return (1);
 	while (data->my_env[i])
 	{
 		if (!(ft_strncmp(data->my_env[i], unset, unset_len) == 0
@@ -40,5 +40,5 @@ char	**ft_unset(t_data *data, char *unset)
 	new[j] = NULL;
 	free_tab(data->my_env);
 	data->my_env = new;
-	return (new);
+	return (0);
 }

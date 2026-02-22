@@ -6,14 +6,19 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:59:58 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/21 12:47:33 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 11:32:25 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-// export affiche toute les var meme sans valeur en ordre ASCII
-// recrer un nouveau tableau de var et les trier print ce tableau sans toucher a env
+// passer sur declare -x au lieux de export
+// les valeur return
+// les guillemet quand uyne value est presente
+// retirer le '=' quand il n'y a pas de value
+// trie ASCII seulement sur la KEY (avant '=' donc)
+// gerer les arg apres export actuellement rien est gerer
+//
 
 void	ft_print_export(char **export)
 {
@@ -73,7 +78,7 @@ void	ft_export(t_data *data)
 	char	**export;
 
 	i = 0;
-	export = malloc(sizeof(char *) * tab_len(data->my_env) + 1);
+	export = malloc(sizeof(char *) * (tab_len(data->my_env) + 1));
 	if (!export)
 		return ;
 	while (data->my_env[i])
@@ -87,7 +92,7 @@ void	ft_export(t_data *data)
 		ft_strcpy(export[i], data->my_env[i]);
 		i++;
 	}
-	export[i] = '\0';
+	export[i] = NULL;
 	ft_sort_char_tab(export);
 	ft_print_export(export);
 	free_tab(export);
