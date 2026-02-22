@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 11:19:20 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 18:24:20 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	main(int ac, char **av, char **env)
 			if (is_builtin(cmd->arg_cmd[0]))
 				exec_builtin(cmd, data);
 		}
-		exec_cmd(cmd, data);
+		else
+			exec_cmd(cmd, data);
 		add_history(line);
 		// CLEAN
 		free_cmd(cmd);

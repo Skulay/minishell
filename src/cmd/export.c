@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:59:58 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 18:18:02 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 18:22:27 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 
 int	ft_strcmp_equal(char *s1, char *s2)
 {
-	unsigned int	i;
+	int i;
 
 	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	while (s1[i] && s2[i] && s1[i] != '=' && s2[i] != '=')
 	{
-		if (s1[i + 1] == '=' || s2[i + 1] == '=')
+		if (s1[i] != s2[i])
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
 	}
@@ -71,10 +71,13 @@ void	ft_sort_char_tab(char **export)
 
 void	ft_strcpy(char *dst, char *src)
 {
-	int	i = 0;
-	int	j = 0;
-	int	equal = 0;
+	int	i;
+	int	j;
+	int	equal;
 
+	i = 0;
+	j = 0;
+	equal = 0;
 	while (src[i])
 	{
 		dst[j++] = src[i];
@@ -101,7 +104,7 @@ void	ft_export_no_arg(t_data *data)
 		return ;
 	while (data->my_env[i])
 	{
-		export[i] = malloc(sizeof(char) * strlen(data->my_env[i]) + 3);
+		export[i] = malloc(sizeof(char) * (strlen(data->my_env[i]) + 3));
 		if (!export[i])
 		{
 			free_tab(export);
