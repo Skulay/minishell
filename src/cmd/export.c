@@ -5,116 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/10 10:59:58 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 18:22:27 by alehamad         ###   ########.fr       */
+/*   Created: 2026/02/22 17:41:21 by alehamad          #+#    #+#             */
+/*   Updated: 2026/02/22 19:21:42 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-// les valeur return
-// gerer les arg apres export actuellement rien est gerer
-//
+void	export_error(char *arg)
+{
+	write(2, "minishell: export: `", 21);
+	write(2, arg, ft_strlen(arg));
+	write(2, "': not a valid identifier\n", 26);
+}
 
-int	ft_strcmp_equal(char *s1, char *s2)
+int	valid_identifier(char *str)
 {
 	int i;
 
 	i = 0;
-	while (s1[i] && s2[i] && s1[i] != '=' && s2[i] != '=')
+	if (!str || (!ft_isalpha(str[0]) && str[0] != '_'))
+		return (0);
+	while (str[i] && str[i] != '=')
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (!ft_isalnum(str[i]) && str[i] != '_')
+			return (0);
 		i++;
 	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (1);
 }
 
-void	ft_print_export(char **export)
+int	ft_export(t_data *data, char **args)
 {
-	int	i;
+	int i;
+	int status;
 
-	i = 0;
-	while (export[i])
+	status = 0;
+	if (!args[1])
+		return (ft_export_no_arg(data));
+	i = 1;
+	while (args[i])
 	{
-		printf("declare -x %s\n", export[i]);
-		i++;
-	}
-}
-
-void	ft_sort_char_tab(char **export)
-{
-	int		i;
-	int		swp;
-	char	*tmp;
-
-	if (!export)
-		return ;
-	swp = 1;
-	while (swp)
-	{
-		swp = 0;
-		i = 0;
-		while (export[i] && export[i + 1])
+		if (!valid_identifier(args[i]))
 		{
-			if (ft_strcmp_equal(export[i], export[i + 1]) > 0)
-			{
-				tmp = export[i];
-				export[i] = export[i + 1];
-				export[i + 1] = tmp;
-				swp = 1;
-			}
-			i++;
+			export_error(args[i]);
+			status = 1;
 		}
-	}
-}
-
-void	ft_strcpy(char *dst, char *src)
-{
-	int	i;
-	int	j;
-	int	equal;
-
-	i = 0;
-	j = 0;
-	equal = 0;
-	while (src[i])
-	{
-		dst[j++] = src[i];
-		if (src[i] == '=' && !equal)
-		{
-			dst[j++] = '\"';
-			equal = 1;
-		}
+		else
+			add_update_env(data, args[i]);
 		i++;
 	}
-	if (equal)
-		dst[j++] = '\"';
-	dst[j] = '\0';
-}
-
-void	ft_export_no_arg(t_data *data)
-{
-	int		i;
-	char	**export;
-
-	i = 0;
-	export = malloc(sizeof(char *) * (tab_len(data->my_env) + 1));
-	if (!export)
-		return ;
-	while (data->my_env[i])
-	{
-		export[i] = malloc(sizeof(char) * (strlen(data->my_env[i]) + 3));
-		if (!export[i])
-		{
-			free_tab(export);
-			return ;
-		}
-		ft_strcpy(export[i], data->my_env[i]);
-		i++;
-	}
-	export[i] = NULL;
-	ft_sort_char_tab(export);
-	ft_print_export(export);
-	free_tab(export);
+	return (status);
 }

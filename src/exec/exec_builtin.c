@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 03:17:30 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/22 17:55:04 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 19:26:30 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	exec_builtin(t_cmd *cmd, t_data *data)
 	else if (ft_strncmp(cmd->arg_cmd[0], "exit", 5) == 0)
 		ft_exit(cmd, data);
 	else if (ft_strncmp(cmd->arg_cmd[0], "export", 7) == 0)
-		ft_export_no_arg(data);
+		ft_export(data, cmd->arg_cmd);
 	else if (ft_strncmp(cmd->arg_cmd[0], "pwd", 4) == 0)
 		ft_pwd(data);
 	else if (ft_strncmp(cmd->arg_cmd[0], "unset", 6) == 0)

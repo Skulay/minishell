@@ -15,6 +15,8 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/cmd/env.c \
         $(SRC_DIR)/cmd/exit.c \
         $(SRC_DIR)/cmd/export.c \
+        $(SRC_DIR)/cmd/export_no_arg.c \
+        $(SRC_DIR)/cmd/export_with_arg.c \
         $(SRC_DIR)/cmd/pwd.c \
         $(SRC_DIR)/cmd/unset.c \
         $(SRC_DIR)/env/my_env.c \

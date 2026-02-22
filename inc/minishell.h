@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 17:41:59 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 19:26:02 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,12 @@ typedef struct s_cmd
 // fonction principal
 
 // fonction utilitaires
+void				ft_sort_char_tab(char **export);
+void				ft_print_export(char **export);
+int					ft_strcmp_equal(char *s1, char *s2);
+void				ft_strcpy(char *dst, char *src);
+int					valid_identifier(char *str);
+void				export_error(char *arg);
 
 // lexer
 bool				is_space(char c);
@@ -146,6 +152,8 @@ t_data				*make_my_env(char **env);
 t_data				*craft_my_env(void);
 t_data				*copy_my_env(char **env);
 int					maj_shlvl(char **env);
+void				add_update_env(t_data *data, char *arg);
+int					find_in_env(char **env, char *key);
 
 // execution
 
@@ -159,6 +167,7 @@ int					exec_builtin(t_cmd *cmd, t_data *data);
 
 // redirection
 int					redirection_manager(t_redir *redir);
+
 // clean up
 void				free_tok(t_token *token);
 void				free_cmd(t_cmd *cmd);
@@ -172,7 +181,8 @@ int					ft_unset(t_data *data, char *unset);
 void				ft_cd(t_data *data, char *str);
 int					ft_echo(t_cmd *cmd);
 int					ft_env(t_data *data);
-void				ft_export_no_arg(t_data *data);
+int					ft_export(t_data *data, char **args);
+int					ft_export_no_arg(t_data *data);
 int					ft_pwd(t_data *data);
 int					ft_exit(t_cmd *cmd, t_data *data);
 
