@@ -6,17 +6,13 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:59:58 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 18:07:37 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/22 18:18:02 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-// passer sur declare -x au lieux de export
 // les valeur return
-// les guillemet quand uyne value est presente
-// retirer le '=' quand il n'y a pas de value
-// trie ASCII seulement sur la KEY (avant '=' donc)
 // gerer les arg apres export actuellement rien est gerer
 //
 
@@ -73,28 +69,25 @@ void	ft_sort_char_tab(char **export)
 	}
 }
 
-void	ft_strcpy(char *s1, char *s2)
+void	ft_strcpy(char *dst, char *src)
 {
-	int	i;
-	int	j;
-	int	first;
+	int	i = 0;
+	int	j = 0;
+	int	equal = 0;
 
-	j = 0;
-	i = 0;
-	first = 1;
-	while (s2[i])
+	while (src[i])
 	{
-		if (s1[j - 1] == '=' && first)
+		dst[j++] = src[i];
+		if (src[i] == '=' && !equal)
 		{
-			s1[j++] = '\"';
-			first = 0;
+			dst[j++] = '\"';
+			equal = 1;
 		}
-		s1[j++] = s2[i++];
+		i++;
 	}
-	if (first)
-		s1[j++] = '\"';
-	s1[j++] = '\"';
-	s1[j] = '\0';
+	if (equal)
+		dst[j++] = '\"';
+	dst[j] = '\0';
 }
 
 void	ft_export_no_arg(t_data *data)
