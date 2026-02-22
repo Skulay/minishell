@@ -1,13 +1,6 @@
 								ERREUR REPERTORIER
 
-
-6/
-
-
-
-
-
-
+6 / certaine built-in semblent se lancer deux fois, notamment echo et pwd, a voir si il y en a pas plus
 
 								ERREUR CORRIGER
 copier coller les lignes repertorier qu'on a corriger ici et la supprimer des repertorier
