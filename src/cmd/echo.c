@@ -6,15 +6,15 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:59:38 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/21 14:33:18 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/23 03:39:09 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int ft_n(char *arg)
+int	ft_n(char *arg)
 {
-	int i;
+	int	i;
 
 	if (!arg || arg[0] != '-' || arg[1] == '\0')
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 19:13:13 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 19:22:31 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/23 03:45:35 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	find_in_env(char **env, char *key)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	i = 0;
 	len = ft_strlen(key);
@@ -29,6 +29,16 @@ int	find_in_env(char **env, char *key)
 	return (-1);
 }
 
+int	ft_strlen_key(char *arg)
+{
+	int	len;
+
+	len = 0;
+	while (arg[len] && arg[len] != '=')
+		len++;
+	return (len);
+}
+
 void	add_update_env(t_data *data, char *arg)
 {
 	int		i;
@@ -36,9 +46,7 @@ void	add_update_env(t_data *data, char *arg)
 	int		index;
 	char	**new_env;
 
-	len = 0;
-	while (arg[len] && arg[len] != '=')
-		len++;
+	len = ft_strlen_key(arg);
 	index = find_in_env(data->my_env, arg);
 	if (index >= 0)
 	{

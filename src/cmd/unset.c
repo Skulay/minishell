@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:58:18 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 19:51:44 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/23 03:41:17 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	remove_one_env(t_data *data, char *unset)
 	while (data->my_env[i])
 	{
 		if (!(ft_strncmp(data->my_env[i], unset, len) == 0
-			&& (data->my_env[i][len] == '='
+				&& (data->my_env[i][len] == '='
 				|| data->my_env[i][len] == '\0')))
 			new[j++] = ft_strdup(data->my_env[i]);
 		i++;
@@ -43,8 +43,9 @@ int	remove_one_env(t_data *data, char *unset)
 
 int	ft_unset(t_data *data, char **args)
 {
-	int i = 1;
+	int	i;
 
+	i = 1;
 	if (!args[1])
 		return (0);
 	while (args[i])

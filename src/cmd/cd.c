@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:26 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 20:13:50 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/23 03:38:26 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	update_env(t_data *data, char *key, char *value)
 
 	index = find_in_env(data->my_env, key);
 	if (index < 0)
-		return;
+		return ;
 	tmp = ft_strjoin(key, "=");
 	new = ft_strjoin(tmp, value);
 	free(tmp);

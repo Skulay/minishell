@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:59:58 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 19:29:50 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/23 03:38:56 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int	ft_strcmp_equal(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] && s2[i] && s1[i] != '=' && s2[i] != '=')

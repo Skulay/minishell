@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 22:52:33 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/22 05:57:51 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/23 03:40:27 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	ft_append(t_redir *redir)
 	close(fd);
 	return (0);
 }
+
 static int	ft_redir_in(t_redir *redir)
 {
 	int	fd;

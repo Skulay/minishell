@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 18:24:20 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/23 03:32:21 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,15 @@ int	main(int ac, char **av, char **env)
 		if (!line)
 			break ;
 		token = lexer(line);
-		// print_tokens(token); // DEBUG
 		cmd = parsing(token, data);
-		// print_cmd(cmd); // DEBUG
-		// print_env(data); // DEBUG
-		// ft_export(data); // TEST EXPORT
-		// EXEC
 		if (cmd && cmd->arg_cmd && cmd->arg_cmd[0])
 		{
 			if (is_builtin(cmd->arg_cmd[0]))
 				exec_builtin(cmd, data);
+			else
+				exec_cmd(cmd, data);
 		}
-		else
-			exec_cmd(cmd, data);
 		add_history(line);
-		// CLEAN
 		free_cmd(cmd);
 		free(line);
 	}
