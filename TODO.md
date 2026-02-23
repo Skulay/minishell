@@ -1,10 +1,6 @@
 								ERREUR REPERTORIER
 
 6 / certaine built-in semblent se lancer deux fois, notamment echo et pwd, a voir si il y en a pas plus
-
-7/	env | sort | grep -v SHLVL | grep -v ^_ <-- Probleme pipeline, sort non realiser, grep SHLVL aussi pas realiser, grep ^_ pas realiser non plus
-
-
 								ERREUR CORRIGER
 copier coller les lignes repertorier qu'on a corriger ici et la supprimer des repertorier
 
@@ -17,3 +13,7 @@ copier coller les lignes repertorier qu'on a corriger ici et la supprimer des re
 4/	exit quitte quand meme si il y'a a trop d'arg alors qu'il ne devrais pas
 
 5/	double check if (!str) dans exite peut etre que le deuxieme devrais etre if (!str[i]) ??
+
+7/	env | sort | grep -v SHLVL | grep -v ^_ <-- Probleme pipeline, sort non realiser, grep SHLVL aussi pas realiser, grep ^_ pas realiser non plus
+
+
