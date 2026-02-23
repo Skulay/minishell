@@ -2,6 +2,9 @@
 
 6 / certaine built-in semblent se lancer deux fois, notamment echo et pwd, a voir si il y en a pas plus
 
+7/	env | sort | grep -v SHLVL | grep -v ^_ <-- Probleme pipeline, sort non realiser, grep SHLVL aussi pas realiser, grep ^_ pas realiser non plus
+
+
 								ERREUR CORRIGER
 copier coller les lignes repertorier qu'on a corriger ici et la supprimer des repertorier
 

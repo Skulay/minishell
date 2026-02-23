@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:58:03 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/23 03:38:43 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/23 13:20:31 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,6 @@
 // diff avec export | env affiche les var avec une valeur
 // export affiche toute les var meme sans valeur en ordre ASCII
 
-int	have_value(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '=')
-		i++;
-	if (str[i] == '=' && str[i + 1])
-		return (1);
-	return (0);
-}
-
 int	ft_env(t_data *data)
 {
 	int	i;
@@ -35,7 +23,7 @@ int	ft_env(t_data *data)
 	i = 0;
 	while (data->my_env[i])
 	{
-		if (have_value(data->my_env[i]))
+		if (ft_strchr(data->my_env[i], '='))
 			ft_printf("%s\n", data->my_env[i]);
 		i++;
 	}
