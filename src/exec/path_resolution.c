@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_resolution.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 22:34:25 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/18 23:00:41 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/23 03:38:05 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	isabsolute(char *s)
 	}
 	return (0);
 }
+
 char	*getpath(char **env)
 {
 	int	i;

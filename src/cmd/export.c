@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 17:41:21 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 19:55:50 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/23 03:38:36 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	valid_identifier(char *str)
 
 int	ft_export(t_data *data, char **args)
 {
-	int i;
-	int status;
+	int	i;
+	int	status;
 
 	status = 0;
 	if (!args[1])

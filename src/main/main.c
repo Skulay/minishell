@@ -28,12 +28,7 @@ int	main(int ac, char **av, char **env)
 		if (!line)
 			break ;
 		token = lexer(line);
-		// print_tokens(token); // DEBUG
 		cmd = parsing(token, data);
-		// print_cmd(cmd); // DEBUG
-		// print_env(data); // DEBUG
-		// ft_export(data); // TEST EXPORT
-		// EXEC
 		if (cmd && cmd->arg_cmd && cmd->arg_cmd[0])
 		{
 			if (is_builtin(cmd->arg_cmd[0]))
@@ -42,7 +37,6 @@ int	main(int ac, char **av, char **env)
 				exec_cmd(cmd, data);
 		}
 		add_history(line);
-		// CLEAN
 		free_cmd(cmd);
 		free(line);
 	}
