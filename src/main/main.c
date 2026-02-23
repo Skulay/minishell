@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/22 18:24:20 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/23 02:30:56 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	main(int ac, char **av, char **env)
 		{
 			if (is_builtin(cmd->arg_cmd[0]))
 				exec_builtin(cmd, data);
+			else
+				exec_cmd(cmd, data);
 		}
-		else
-			exec_cmd(cmd, data);
 		add_history(line);
 		// CLEAN
 		free_cmd(cmd);
