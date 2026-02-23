@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:47:02 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/23 13:00:41 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/23 23:11:37 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	exec_cmd(t_cmd *command, t_data *data)
 			data->last_exit_code = 1;
 			return (1);
 		}
-		data->last_exit_code = exec_builtin(command, data);
+		exec_builtin(command, data);
 		dup2(stdin_original, STDIN_FILENO);
 		dup2(stdout_original, STDOUT_FILENO);
 		close(stdin_original);
