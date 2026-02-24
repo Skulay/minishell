@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/23 13:00:12 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/24 01:23:35 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <signal.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -164,6 +165,11 @@ char				*getpath(char **env);
 void				execute_pipeline(t_cmd *cmd, t_data *data);
 int					is_builtin(char *str);
 int					exec_builtin(t_cmd *cmd, t_data *data);
+
+// signals
+
+void				interactive_signals_management(void);
+void				execution_signals_management(void);
 
 // redirection
 int					redirection_manager(t_redir *redir);

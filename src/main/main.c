@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/23 23:11:26 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/24 01:17:07 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ int	main(int ac, char **av, char **env)
 	data = make_my_env(env);
 	while (1)
 	{
+		interactive_signals_management();
 		line = readline(PROMPT);
 		if (!line)
 			break ;
 		token = lexer(line);
 		cmd = parsing(token, data);
 		if (cmd && cmd->arg_cmd && cmd->arg_cmd[0])
-				exec_cmd(cmd, data);
+			exec_cmd(cmd, data);
 		add_history(line);
 		free_cmd(cmd);
 		free(line);
