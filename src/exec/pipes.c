@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/22 05:05:59 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/24 01:24:41 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ void	execute_pipeline(t_cmd *cmd, t_data *data)
 			return (perror("pipe"));
 		pid = fork();
 		if (pid == 0)
+		{
+			execution_signals_management();
 			child_manager(cmd, data, prev_fd, fd);
+		}
 		if (prev_fd != -1)
 			close(prev_fd);
 		if (cmd->next)
