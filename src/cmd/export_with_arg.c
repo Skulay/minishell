@@ -6,28 +6,11 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 19:13:13 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/23 03:45:35 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/25 20:56:53 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-int	find_in_env(char **env, char *key)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = ft_strlen(key);
-	while (env[i])
-	{
-		if (!ft_strncmp(env[i], key, len)
-			&& (env[i][len] == '=' || env[i][len] == '\0'))
-			return (i);
-		i++;
-	}
-	return (-1);
-}
 
 int	ft_strlen_key(char *arg)
 {
@@ -37,6 +20,23 @@ int	ft_strlen_key(char *arg)
 	while (arg[len] && arg[len] != '=')
 		len++;
 	return (len);
+}
+
+int	find_in_env(char **env, char *key)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen_key(key);
+	while (env[i])
+	{
+		if (!ft_strncmp(env[i], key, len)
+			&& (env[i][len] == '=' || env[i][len] == '\0'))
+			return (i);
+		i++;
+	}
+	return (-1);
 }
 
 void	add_update_env(t_data *data, char *arg)
