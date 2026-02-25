@@ -6,11 +6,19 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:47:02 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/23 23:11:37 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/25 03:12:56 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+static void	fd_manipulation(int stdin_original, int stdout_original)
+{
+	dup2(stdin_original, STDIN_FILENO);
+	dup2(stdout_original, STDOUT_FILENO);
+	close(stdin_original);
+	close(stdout_original);
+}
 
 int	exec_cmd(t_cmd *command, t_data *data)
 {
@@ -25,14 +33,12 @@ int	exec_cmd(t_cmd *command, t_data *data)
 		stdout_original = dup(STDOUT_FILENO);
 		if (redirection_manager(command->redir) != 0)
 		{
+			fd_manipulation(stdin_original, stdout_original);
 			data->last_exit_code = 1;
 			return (1);
 		}
 		exec_builtin(command, data);
-		dup2(stdin_original, STDIN_FILENO);
-		dup2(stdout_original, STDOUT_FILENO);
-		close(stdin_original);
-		close(stdout_original);
+		fd_manipulation(stdin_original, stdout_original);
 		return (0);
 	}
 	execute_pipeline(command, data);
