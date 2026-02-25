@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/24 01:24:41 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/25 21:07:51 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+static void	exit_perror(char *str, int code)
+{
+	perror(str);
+	exit(code);
+}
 
 static void	wait_children(pid_t last_pid, t_data *data)
 {
@@ -51,8 +57,7 @@ static void	child_manager(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
 		exit(127);
 	}
 	execve(path, cmd->arg_cmd, data->my_env);
-	perror("fork");
-	exit(126);
+	exit_perror("fork", 126);
 }
 
 void	execute_pipeline(t_cmd *cmd, t_data *data)
