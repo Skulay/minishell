@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/24 01:17:07 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/26 20:34:24 by tarek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	main(int ac, char **av, char **env)
 		free(line);
 	}
 	free_tab(data->my_env);
-	rl_clear_history();
+//	rl_clear_history();
 	return (0);
 }

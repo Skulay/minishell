@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:59:58 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/23 03:38:56 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/26 21:08:39 by tarek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	ft_export_no_arg(t_data *data)
 		return (1);
 	while (data->my_env[i])
 	{
-		export[i] = malloc(sizeof(char) * (strlen(data->my_env[i]) + 3));
+		export[i] = malloc(sizeof(char) * (ft_strlen(data->my_env[i]) + 3));
 		if (!export[i])
 		{
 			free_tab(export);
