@@ -6,11 +6,17 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:51:10 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 12:51:20 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/26 13:44:48 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+void	free_data(t_data *data)
+{
+	free_tab(data->my_env);
+	free(data);
+}
 
 void	free_tab(char **tab)
 {

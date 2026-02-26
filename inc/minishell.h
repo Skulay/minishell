@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/24 01:23:35 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/26 13:45:06 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ int					redirection_manager(t_redir *redir);
 void				free_tok(t_token *token);
 void				free_cmd(t_cmd *cmd);
 void				free_tab(char **tab);
+void				free_data(t_data *data);
 
 // init
 t_cmd				*init_cmd(void);
