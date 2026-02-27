@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/26 13:45:06 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/27 01:25:56 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void				ft_tokadd_back(t_token **lst, t_token *new);
 t_type				what_type(char c, char d);
 t_token				*ft_toknew(char *content, t_type token_type);
 t_token				*ft_toklast(t_token *lst);
-t_token				*lexer(char *line);
+t_token				*lexer(char *line, t_data *data);
 
 // Parsing
 t_cmd				*parsing(t_token *token, t_data *data);
