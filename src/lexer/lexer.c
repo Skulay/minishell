@@ -6,11 +6,31 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:33:21 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/16 04:16:00 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/27 01:28:34 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+int	quote_close_or_not(char *line)
+{
+	int	single;
+	int	dual;
+	int	i;
+
+	single = 0;
+	dual = 0;
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '\'' && !dual)
+			single = !single;
+		else if (line[i] == '\"' && !single)
+			dual = !dual;
+		i++;
+	}
+	return (single || dual);
+}
 
 t_type	what_type(char c, char d)
 {
@@ -80,14 +100,20 @@ char	*get_word(char *line, int *i)
 	return (ft_substr(line, start, *i - start));
 }
 
-t_token	*lexer(char *line)
+t_token	*lexer(char *line, t_data *data)
 {
 	t_token	*tokens;
-	char	*value;
+	char	*val;
 	int		i;
 
 	tokens = NULL;
 	i = 0;
+	if (quote_close_or_not(line))
+	{
+		ft_putstr_fd("minishell: syntax error: unclosed quote\n", 2);
+		data->last_exit_code = 2;
+		return (NULL);
+	}
 	while (line[i])
 	{
 		while (is_space(line[i]))
@@ -95,11 +121,10 @@ t_token	*lexer(char *line)
 		if (!line[i])
 			break ;
 		if (is_operator(line[i]))
-			value = get_operator(line, &i);
+			val = get_operator(line, &i);
 		else
-			value = get_word(line, &i);
-		ft_tokadd_back(&tokens,
-			ft_toknew(value, what_type(value[0], value[1])));
+			val = get_word(line, &i);
+		ft_tokadd_back(&tokens, ft_toknew(val, what_type(val[0], val[1])));
 	}
 	return (tokens);
 }
