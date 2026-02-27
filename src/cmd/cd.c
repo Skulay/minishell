@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:26 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/23 03:38:26 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/27 17:28:54 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ int	change_dir(t_data *data, char *path)
 	char	*cwd;
 
 	oldpwd = getcwd(NULL, 0);
-	if (!oldpwd)
-		return (1);
 	if (chdir(path) != 0)
 	{
 		perror("minishell: cd");
