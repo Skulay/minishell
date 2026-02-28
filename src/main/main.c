@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/28 06:32:44 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/28 10:08:58 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int	main(int ac, char **av, char **env)
 			break ;
 		token = lexer(line, data);
 		cmd = parsing(token, data);
-		if (cmd && cmd->arg_cmd && cmd->arg_cmd[0])
-			exec_cmd(cmd, data);
+		exec_cmd(cmd, data);
 		if (line[0])
 			add_history(line);
 		free_cmd(cmd);
