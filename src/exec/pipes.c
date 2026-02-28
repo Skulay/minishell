@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/28 07:17:16 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/28 07:28:09 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ static void	child_manager(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
 	execve(path, cmd->arg_cmd, data->my_env);
 	exit_perror("fork", 126);
 }
+static void	call_child_with_sig(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	child_manager(cmd, data, prev_fd, fd);
+}
 
 void	execute_pipeline(t_cmd *cmd, t_data *data)
 {
@@ -81,9 +87,7 @@ void	execute_pipeline(t_cmd *cmd, t_data *data)
 		pid = fork();
 		if (pid == 0)
 		{
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
-			child_manager(cmd, data, prev_fd, fd);
+			call_child_with_sig(cmd, data, prev_fd, fd);
 		}
 		if (prev_fd != -1)
 			close(prev_fd);
