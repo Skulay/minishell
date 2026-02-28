@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/28 07:28:09 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/28 07:30:14 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ void	execute_pipeline(t_cmd *cmd, t_data *data)
 			return (perror("pipe"));
 		pid = fork();
 		if (pid == 0)
-		{
 			call_child_with_sig(cmd, data, prev_fd, fd);
-		}
 		if (prev_fd != -1)
 			close(prev_fd);
 		if (cmd->next)
