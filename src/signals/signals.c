@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:04:35 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/26 21:17:29 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/02/28 06:34:17 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static void	sigint_handler(int sig)
 	(void)sig;
 	write(STDOUT_FILENO, "\n", 1);
 	rl_on_new_line();
-	rl_replace_line("", 1);
+	rl_replace_line("", 0);
+	rl_redisplay();
 }
 
 void	interactive_signals_management(void)
@@ -28,6 +29,6 @@ void	interactive_signals_management(void)
 
 void	execution_signals_management(void)
 {
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }

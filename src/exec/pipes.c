@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/25 21:07:51 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/02/28 07:17:16 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,16 @@ static void	wait_children(pid_t last_pid, t_data *data)
 	int	status;
 
 	waitpid(last_pid, &status, 0);
-	if (WIFEXITED(status))
-		data->last_exit_code = WEXITSTATUS(status);
-	else if (WIFSIGNALED(status))
+	if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == SIGINT)
+			ft_putstr_fd("\n", STDOUT_FILENO);
+		else if (WTERMSIG(status) == SIGQUIT)
+			ft_putstr_fd("Quit (core dumped)\n", STDOUT_FILENO);
 		data->last_exit_code = 128 + WTERMSIG(status);
+	}
+	else if (WIFEXITED(status))
+		data->last_exit_code = WEXITSTATUS(status);
 	while (waitpid(-1, NULL, 0) > 0)
 		;
 }
@@ -67,6 +73,7 @@ void	execute_pipeline(t_cmd *cmd, t_data *data)
 	int		prev_fd;
 
 	prev_fd = -1;
+	execution_signals_management();
 	while (cmd)
 	{
 		if (cmd->next && pipe(fd) == -1)
@@ -74,7 +81,8 @@ void	execute_pipeline(t_cmd *cmd, t_data *data)
 		pid = fork();
 		if (pid == 0)
 		{
-			execution_signals_management();
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
 			child_manager(cmd, data, prev_fd, fd);
 		}
 		if (prev_fd != -1)
