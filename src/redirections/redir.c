@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 22:52:33 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/03 16:38:54 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/03 16:55:58 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,18 @@ static int	ft_heredoc(t_redir *redir)
 	len = ft_strlen(redir->file);
 	if (pipe(fd) == -1)
 		return (perror("pipe"), 1);
+
+	if (!redir->quote)
+		ft_heredoc_expand(line);
+	else
+		ft_herodoc_not_quoted(line);
 	while (1)
 	{
 		line = readline("> ");
 		if (!line)
 			break ;
+		if (!redir->quote)
+			line = ft_heredoc_expand(line);
 		if (ft_strncmp(line, redir->file, len) == 0 && line[len] == '\0')
 		{
 			free(line);
