@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/28 11:33:52 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/04 00:51:30 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void	child_manager(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
 	execve(path, cmd->arg_cmd, data->my_env);
 	exit_perror("fork", 126);
 }
+
 static void	call_child_with_sig(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
 {
 	signal(SIGINT, SIG_DFL);

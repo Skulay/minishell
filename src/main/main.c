@@ -6,11 +6,17 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/28 10:08:58 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/04 01:17:56 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+static void	helper_main(t_data *data)
+{
+	free_data(data);
+	rl_clear_history();
+}
 
 int	main(int ac, char **av, char **env)
 {
@@ -22,6 +28,7 @@ int	main(int ac, char **av, char **env)
 	if (ac >= 2)
 		return (0);
 	data = make_my_env(env);
+	rl_variable_bind("enable-bracketed-paste", "off");
 	while (1)
 	{
 		interactive_signals_management();
@@ -36,7 +43,6 @@ int	main(int ac, char **av, char **env)
 		free_cmd(cmd);
 		free(line);
 	}
-	free_data(data);
-	rl_clear_history();
+	helper_main(data);
 	return (0);
 }
