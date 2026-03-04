@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/04 00:43:16 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/04 14:17:35 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-# define PROMPT "minishell> "
+# define PROMPT "minishell: "
 
 // enum
 typedef enum e_expand
