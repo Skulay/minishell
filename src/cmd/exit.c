@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/05 14:48:16 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/05 17:59:46 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,16 @@ static int	is_numeric(char *str)
 
 int	ft_exit(t_cmd *cmd, t_data *data)
 {
+	int	code;
+
 	ft_putstr_fd("exit\n", STDERR_FILENO);
 	if (!cmd->arg_cmd[1])
 	{
+		code = data->last_exit_code;
 		free_all(cmd, data);
-		exit(data->last_exit_code);
+		exit(code);
 	}
-	if (cmd->arg_cmd[2] && is_numeric(cmd->arg_cmd[2]))
+	if (cmd->arg_cmd[2])
 	{
 		ft_putstr_fd("too many arguments\n", STDERR_FILENO);
 		return (1);
@@ -53,6 +56,7 @@ int	ft_exit(t_cmd *cmd, t_data *data)
 		free_all(cmd, data);
 		exit(255);
 	}
+	code = ft_atoi(cmd->arg_cmd[1]) % 256;
 	free_all(cmd, data);
-	exit(ft_atoi(cmd->arg_cmd[1]) % 256);
+	exit(code);
 }
