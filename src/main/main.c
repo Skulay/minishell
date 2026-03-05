@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/05 13:01:05 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/05 23:06:45 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ void	shell_loop(t_data *data, int shell)
 		if (shell)
 			line = readline(PROMPT);
 		else
+		{
 			line = get_next_line(STDIN_FILENO);
+			if (line && line[ft_strlen(line) - 1] == '\n')
+				line[ft_strlen(line) - 1] = '\0';
+		}
 		if (!line)
 			break ;
 		token = lexer(line, data);
@@ -53,7 +57,7 @@ int	main(int ac, char **av, char **env)
 	int		shell;
 
 	if (ac >= 2)
-		return (0);
+		return (1);
 	shell = isatty(STDIN_FILENO);
 	data = make_my_env(env);
 	shell_loop(data, shell);
