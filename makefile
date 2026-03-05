@@ -1,7 +1,7 @@
 NAME        = minishell
 
 CC          = cc
-CFLAGS      = -Iincludes -Ilibft -g
+CFLAGS      = -Iincludes -Ilibft -g3 -fsanitize=address,undefined
 LDFLAGS     = -lreadline
 
 LIBFT_DIR   = libft
