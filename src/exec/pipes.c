@@ -6,15 +6,16 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/04 00:51:30 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/05 15:07:17 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void	exit_perror(char *str, int code)
+static void	exit_perror(char *str, int code, t_cmd *cmd, t_data *data)
 {
 	perror(str);
+	free_all(cmd, data);
 	exit(code);
 }
 
@@ -40,6 +41,7 @@ static void	wait_children(pid_t last_pid, t_data *data)
 static void	child_manager(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
 {
 	char	*path;
+	int		statut;
 
 	if (prev_fd != -1)
 	{
@@ -53,17 +55,25 @@ static void	child_manager(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
 		close(fd[1]);
 	}
 	if (redirection_manager(cmd->redir) != 0)
+	{
+		free_all(cmd, data);
 		exit(1);
+	}
 	if (is_builtin(cmd->arg_cmd[0]))
-		exit(exec_builtin(cmd, data));
+	{
+		statut = exec_builtin(cmd, data);
+		free_all(cmd, data);
+		exit(statut);
+	}
 	path = findvalidpath(data->my_env, cmd->arg_cmd[0]);
 	if (!path)
 	{
 		ft_putstr_fd("Command not found\n", 2);
+		free_all(cmd, data);
 		exit(127);
 	}
 	execve(path, cmd->arg_cmd, data->my_env);
-	exit_perror("fork", 126);
+	exit_perror("fork", 126, cmd, data);
 }
 
 static void	call_child_with_sig(t_cmd *cmd, t_data *data, int prev_fd, int *fd)

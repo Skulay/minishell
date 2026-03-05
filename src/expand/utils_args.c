@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:09:07 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:36:30 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/05 16:10:41 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ char	**append_all(char **dest, char **src)
 	while (++j < lsrc)
 		new[i + j] = ft_strdup(src[j]);
 	new[i + j] = NULL;
-	free(dest);
+	if (dest)
+		free(dest);
 	return (new);
 }

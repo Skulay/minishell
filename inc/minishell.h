@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/04 14:17:35 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/05 14:52:26 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ void				free_tok(t_token *token);
 void				free_cmd(t_cmd *cmd);
 void				free_tab(char **tab);
 void				free_data(t_data *data);
+void				free_all(t_cmd *cmd, t_data *data);
 
 // init
 t_cmd				*init_cmd(void);
