@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/04 16:17:13 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/05 12:54:03 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,32 @@ static void	helper_main(t_data *data)
 {
 	free_data(data);
 	rl_clear_history();
+}
+
+void shell_loop(t_data *data, int shell)
+{
+	char	*line;
+	t_token	*token;
+	t_cmd	*cmd;
+
+	while (1)
+	{
+		if (shell)
+			interactive_signals_management();
+		if (shell)
+			line = readline(PROMPT);
+		else
+			line = get_next_line(STDIN_FILENO);
+		if (!line)
+			break ;
+		token = lexer(line, data);
+		cmd = parsing(token, data);
+		exec_cmd(cmd, data);
+		if (shell && line[0])
+			add_history(line);
+		free_cmd(cmd);
+		free(line);
+	}
 }
 
 int	main(int ac, char **av, char **env)
@@ -28,28 +54,9 @@ int	main(int ac, char **av, char **env)
 
 	if (ac >= 2)
 		return (0);
-	shell = isatty(STDIN_FILENO) && isatty(STDOUT_FILENO);
+	shell = isatty(STDIN_FILENO);
 	data = make_my_env(env);
-	while (1)
-	{
-		if (shell)
-			interactive_signals_management();
-		if (shell)
-			line = readline(PROMPT);
-		else
-			line = get_next_line(STDIN_FILENO);
-		if (!line)
-			break ;
-		token = lexer(line, data);
-		print_tokens(token);
-		cmd = parsing(token, data);
-		print_cmd(cmd);
-		exec_cmd(cmd, data);
-		if (shell && line[0])
-			add_history(line);
-		free_cmd(cmd);
-		free(line);
-	}
+	shell_loop(data, shell);
 	helper_main(data);
 	return (0);
 }
