@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/05 12:54:03 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/05 13:01:05 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	helper_main(t_data *data)
 	rl_clear_history();
 }
 
-void shell_loop(t_data *data, int shell)
+void	shell_loop(t_data *data, int shell)
 {
 	char	*line;
 	t_token	*token;

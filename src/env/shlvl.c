@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 07:06:02 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/05 12:55:52 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/05 13:00:36 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int	maj_shlvl(char **env)
 			new = ft_strjoin("SHLVL=", nbr);
 			free(nbr);
 			if (!new)
-			{
-				free(env[i]);
-				return (1);
-			}
+				return (free(env[i]), 1);
 			free(env[i]);
 			env[i] = new;
 			return (0);
