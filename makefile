@@ -1,7 +1,7 @@
 NAME        = minishell
 
 CC          = cc
-CFLAGS      = -Iincludes -Ilibft -g
+CFLAGS      = -Iincludes -Ilibft -g3# -fsanitize=address,undefined
 LDFLAGS     = -lreadline
 
 LIBFT_DIR   = libft
@@ -40,13 +40,15 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/clean_up/free_tok.c \
         $(SRC_DIR)/clean_up/free_tab.c \
         $(SRC_DIR)/clean_up/free_cmd.c \
+        $(SRC_DIR)/clean_up/free_all.c \
         $(SRC_DIR)/exec/exec.c \
+        $(SRC_DIR)/exec/heredocs.c \
         $(SRC_DIR)/exec/path_resolution.c \
         $(SRC_DIR)/redirections/redir.c \
         $(SRC_DIR)/exec/pipes.c \
         $(SRC_DIR)/exec/is_builtin.c \
         $(SRC_DIR)/exec/exec_builtin.c \
-        $(SRC_DIR)/signals/signals.c 
+        $(SRC_DIR)/signals/signals.c
 
 OBJS = $(SRCS:.c=.o)
 

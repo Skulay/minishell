@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shlvl.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/17 07:06:02 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/05 13:00:36 by alehamad         ###   ########.fr       */
+/*   Created: 2026/03/04 01:04:51 by alehamad          #+#    #+#             */
+/*   Updated: 2026/03/04 01:05:51 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "libft.h"
 
-int	maj_shlvl(char **env)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int		i;
-	int		lvl;
-	char	*new;
-	char	*nbr;
+	unsigned int	i;
 
 	i = 0;
-	while (env[i])
-	{
-		if (!ft_strncmp(env[i], "SHLVL=", 6))
-		{
-			lvl = ft_atoi(env[i] + 6) + 1;
-			nbr = ft_itoa(lvl);
-			if (!nbr)
-				return (1);
-			new = ft_strjoin("SHLVL=", nbr);
-			free(nbr);
-			if (!new)
-				return (free(env[i]), 1);
-			free(env[i]);
-			env[i] = new;
-			return (0);
-		}
+	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
-	}
-	return (1);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 16:19:10 by alehamad          #+#    #+#             */
-/*   Updated: 2025/12/15 20:19:29 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/04 01:09:57 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ size_t	gnl_strlen(char *s);
 // ADD FUNCTION
 double	ft_atod(const char *s);
 long	ft_atol(char *nptr);
+int		ft_strcmp(const char *s1, const char *s2);
 
 // BONUS PART
 typedef struct s_list

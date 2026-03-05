@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/27 01:31:08 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/05 14:52:26 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-# define PROMPT "minishell> "
+# define PROMPT "minishell: "
 
 // enum
 typedef enum e_expand
@@ -147,6 +147,7 @@ char				*my_get_env(t_data *data, char *var);
 char				*extract_var(char *str, int *i, t_data *data);
 int					tab_len(char **tab);
 char				**single_to_tab(char *str);
+char				*ft_heredoc_expand(char *line);
 
 // env
 t_data				*make_my_env(char **env);
@@ -179,6 +180,7 @@ void				free_tok(t_token *token);
 void				free_cmd(t_cmd *cmd);
 void				free_tab(char **tab);
 void				free_data(t_data *data);
+void				free_all(t_cmd *cmd, t_data *data);
 
 // init
 t_cmd				*init_cmd(void);

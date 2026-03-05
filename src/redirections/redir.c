@@ -6,11 +6,37 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 22:52:33 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/23 03:40:27 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/04 00:56:54 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+static int	ft_heredoc(t_redir *redir)
+{
+	int		fd[2];
+	char	*line;
+
+	if (pipe(fd) == -1)
+		return (perror("pipe"), 1);
+	while (1)
+	{
+		line = readline("> ");
+		if (!line)
+			break ;
+		if (!redir->quote)
+			line = ft_heredoc_expand(line);
+		if (!ft_strcmp(line, redir->file))
+			break ;
+		write(fd[1], line, ft_strlen(line));
+		write(fd[1], "\n", 1);
+		free(line);
+	}
+	close(fd[1]);
+	dup2(fd[0], STDIN_FILENO);
+	close(fd[0]);
+	return (free(line), 0);
+}
 
 static int	ft_append(t_redir *redir)
 {
@@ -57,6 +83,8 @@ int	redirection_manager(t_redir *redir)
 		else if (redir->type == APPEND && ft_append(redir) != 0)
 			return (1);
 		else if (redir->type == REDIR_IN && ft_redir_in(redir) != 0)
+			return (1);
+		else if (redir->type == HEREDOC && ft_heredoc(redir) != 0)
 			return (1);
 		redir = redir->next;
 	}
