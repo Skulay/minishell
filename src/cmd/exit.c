@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/06 11:44:37 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:53:51 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ int ft_exit(t_cmd *cmd, t_data *data)
 	ft_putstr_fd("exit\n", STDERR_FILENO);
 	if (!cmd->arg_cmd[1])
 	{
+		code = data->last_exit_code;
 		free_all(cmd, data);
-		exit(data->last_exit_code);
+		exit(code);
 	}
 	if (!is_numeric(cmd->arg_cmd[1]))
 	{

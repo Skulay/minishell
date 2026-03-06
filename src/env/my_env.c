@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 05:47:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/23 13:03:48 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:57:18 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ t_data	*copy_my_env(char **env)
 	}
 	my_envtmp[j] = NULL;
 	data->my_env = my_envtmp;
+	data->last_exit_code = 0;
 	return (data);
 }
