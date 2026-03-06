@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/06 11:21:47 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:29:22 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	shell_loop(t_data *data, int shell)
 			line = readline(PROMPT);
 		else
 		{
-			line = readline(NULL);
+			line = get_next_line(STDIN_FILENO);
 			if (line && line[ft_strlen(line) - 1] == '\n')
 				line[ft_strlen(line) - 1] = '\0';
 		}
