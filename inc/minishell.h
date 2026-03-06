@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/05 23:05:40 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/06 22:32:43 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ char				*getpath(char **env);
 void				execute_pipeline(t_cmd *cmd, t_data *data);
 int					is_builtin(char *str);
 int					exec_builtin(t_cmd *cmd, t_data *data);
+void				fd_closer(int *fd);
 
 // signals
 
