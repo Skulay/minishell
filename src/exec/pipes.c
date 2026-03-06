@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/05 15:07:17 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/06 22:58:46 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void	exit_perror(char *str, int code, t_cmd *cmd, t_data *data)
+static void	exit_perror(char *str, char *line, t_cmd *cmd, t_data *data)
 {
+	free(line);
 	perror(str);
 	free_all(cmd, data);
-	exit(code);
+	exit(126);
 }
 
 static void	wait_children(pid_t last_pid, t_data *data)
@@ -68,12 +69,14 @@ static void	child_manager(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
 	path = findvalidpath(data->my_env, cmd->arg_cmd[0]);
 	if (!path)
 	{
+		if (cmd->next)
+			fd_closer(fd);
 		ft_putstr_fd("Command not found\n", 2);
 		free_all(cmd, data);
 		exit(127);
 	}
 	execve(path, cmd->arg_cmd, data->my_env);
-	exit_perror("fork", 126, cmd, data);
+	exit_perror("fork", path, cmd, data);
 }
 
 static void	call_child_with_sig(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
