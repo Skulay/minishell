@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 03:11:01 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:15:02 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:23:32 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	quote_or_not(char *str)
 {
 	int	i;
 
+	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '\'' || str[i] == '\"')
