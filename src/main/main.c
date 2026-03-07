@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/06 11:29:22 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/07 00:59:15 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	shell_loop(t_data *data, int shell)
 			interactive_signals_management();
 		if (shell)
 			line = readline(PROMPT);
+		if (g_sig_code == 130)
+		{
+			data->last_exit_code = 130;
+			g_sig_code = 0;
+		}
 		else
 		{
 			line = get_next_line(STDIN_FILENO);
