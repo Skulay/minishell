@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_no_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:59:58 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/26 21:08:39 by tarek            ###   ########.fr       */
+/*   Updated: 2026/03/08 00:46:31 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-// les valeur return
-// gerer les arg apres export actuellement rien est gerer
-//
 
 int	ft_strcmp_equal(char *s1, char *s2)
 {
@@ -110,7 +106,7 @@ int	ft_export_no_arg(t_data *data)
 			free_tab(export);
 			return (1);
 		}
-		ft_strcpy(export[i], data->my_env[i]);
+		ft_strcpy(export[i], data -> my_env[i]);
 		i++;
 	}
 	export[i] = NULL;

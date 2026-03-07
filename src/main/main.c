@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/07 00:59:15 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/08 00:42:24 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ void	shell_loop(t_data *data, int shell)
 	while (1)
 	{
 		if (shell)
-			interactive_signals_management();
-		if (shell)
-			line = readline(PROMPT);
-		if (g_sig_code == 130)
 		{
-			data->last_exit_code = 130;
-			g_sig_code = 0;
+			interactive_signals_management();
+			line = readline(PROMPT);
+			if (g_sig_code == 130)
+			{
+				data->last_exit_code = 130;
+				g_sig_code = 0;
+			}
 		}
 		else
 		{
@@ -43,11 +44,11 @@ void	shell_loop(t_data *data, int shell)
 		}
 		if (!line)
 			break ;
+		if (shell && line[0])
+			add_history(line);
 		token = lexer(line, data);
 		cmd = parsing(token, data);
 		exec_cmd(cmd, data);
-		if (shell && line[0])
-			add_history(line);
 		free_cmd(cmd);
 		free(line);
 	}

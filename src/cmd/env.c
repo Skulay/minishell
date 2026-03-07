@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:58:03 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/23 13:20:31 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/08 00:46:35 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-// env with no options or arguments
-// diff avec export | env affiche les var avec une valeur
-// export affiche toute les var meme sans valeur en ordre ASCII
 
 int	ft_env(t_data *data)
 {

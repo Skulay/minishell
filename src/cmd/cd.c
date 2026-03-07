@@ -3,22 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:26 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/27 17:28:54 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/08 00:46:38 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-// ne pas oublier de modifier le PWD et le OLD PWD dans l'env
-// get_env_value(data->my_env, "HOME");
-
 char	*get_env_value(t_data *data, char *key)
 {
-	int		i;
-	int		len;
+	int	i;
+	int	len;
 
 	i = 0;
 	len = ft_strlen(key);
