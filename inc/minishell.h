@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/06 22:32:43 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/07 01:00:17 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include <unistd.h>
 
 # define PROMPT "minishell# "
+
+extern int			g_sig_code;
 
 // enum
 typedef enum e_expand

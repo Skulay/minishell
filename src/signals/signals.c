@@ -6,15 +6,18 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:04:35 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/28 06:34:17 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/07 01:00:28 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+int			g_sig_code = 0;
+
 static void	sigint_handler(int sig)
 {
 	(void)sig;
+	g_sig_code = 130;
 	write(STDOUT_FILENO, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
