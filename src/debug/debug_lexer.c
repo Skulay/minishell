@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   debug_lexer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:19:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/27 01:11:24 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/08 00:46:23 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-// a mettre dans le main pour print les token apres lexer
 
 void	print_tokens(t_token *tokens)
 {

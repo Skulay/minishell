@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:58:18 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/23 03:41:17 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/08 00:46:26 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-// unset with no options
 
 int	remove_one_env(t_data *data, char *unset)
 {
@@ -31,7 +29,7 @@ int	remove_one_env(t_data *data, char *unset)
 	{
 		if (!(ft_strncmp(data->my_env[i], unset, len) == 0
 				&& (data->my_env[i][len] == '='
-				|| data->my_env[i][len] == '\0')))
+					|| data->my_env[i][len] == '\0')))
 			new[j++] = ft_strdup(data->my_env[i]);
 		i++;
 	}
