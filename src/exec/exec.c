@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:47:02 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/25 03:12:56 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/09 03:03:49 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	exec_cmd(t_cmd *command, t_data *data)
 		return (0);
 	if (!command->next && is_builtin(command->arg_cmd[0]))
 	{
+		if (ft_strncmp(command->arg_cmd[0], "exit", 5) == 0)
+			ft_exit(command, data);
 		stdin_original = dup(STDIN_FILENO);
 		stdout_original = dup(STDOUT_FILENO);
 		if (redirection_manager(command->redir) != 0)
