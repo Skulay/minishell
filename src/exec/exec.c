@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:47:02 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/09 03:03:49 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/10 23:34:16 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,15 @@ int	exec_cmd(t_cmd *command, t_data *data)
 	}
 	execute_pipeline(command, data);
 	return (0);
+}
+void	command_not_found(t_cmd *command, t_data *data, int *fd)
+{
+	if (command->next)
+		fd_closer(fd);
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(command->arg_cmd[0], 2);
+	ft_putstr_fd(":", 2);
+	ft_putstr_fd(" command not found\n", 2);
+	free_all(command, data);
+	exit(127);
 }

@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/07 01:00:17 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/10 23:28:42 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ int					ft_export(t_data *data, char **args);
 int					ft_export_no_arg(t_data *data);
 int					ft_pwd(t_data *data);
 int					ft_exit(t_cmd *cmd, t_data *data);
+void				command_not_found(t_cmd *command, t_data *data, int *fd);
 
 // debugg
 void				print_tokens(t_token *tokens);
