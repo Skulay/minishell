@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/08 00:46:33 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/10 18:48:04 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+static void	free_exit(t_data *data, t_cmd *cmd, int code)
+{
+	free_all(cmd, data);
+	exit(code);
+}
 
 static int	is_numeric(char *str)
 {
@@ -58,6 +64,5 @@ int	ft_exit(t_cmd *cmd, t_data *data)
 		return (1);
 	}
 	code = ft_atoi(cmd->arg_cmd[1]) % 256;
-	free_all(cmd, data);
-	exit(code);
+	free_exit(data, cmd, code);
 }

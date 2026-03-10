@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 05:47:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/06 11:57:18 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/10 18:52:09 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,15 @@ t_data	*copy_my_env(char **env)
 	my_envtmp = ft_calloc(tab_len(env) + 1, sizeof(char *));
 	if (!my_envtmp)
 		return (NULL);
-	i = 0;
+	i = -1;
 	j = 0;
-	while (env[i])
+	while (env[++i])
 	{
 		if (ft_strncmp(env[i], "_=", 2) != 0)
 		{
 			my_envtmp[j] = ft_strdup(env[i]);
 			j++;
 		}
-		i++;
 	}
 	my_envtmp[j] = NULL;
 	data->my_env = my_envtmp;

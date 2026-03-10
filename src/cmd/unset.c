@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:58:18 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/08 00:46:26 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/10 18:45:50 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	remove_one_env(t_data *data, char *unset)
 	{
 		if (!(ft_strncmp(data->my_env[i], unset, len) == 0
 				&& (data->my_env[i][len] == '='
-					|| data->my_env[i][len] == '\0')))
+				|| data->my_env[i][len] == '\0')))
 			new[j++] = ft_strdup(data->my_env[i]);
 		i++;
 	}

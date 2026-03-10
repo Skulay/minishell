@@ -6,7 +6,7 @@
 /*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 03:11:01 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/10 18:40:42 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/10 18:50:51 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,10 @@ void	add_redir(t_cmd *cmd, t_token *token)
 	new->quote = quote_or_not(token->next->value);
 	new->file = ft_strdup(token->next->value);
 	if (!new->file)
-	{
-		free(new);
-		return ;
-	}
+		return (free(new));
 	new->next = NULL;
 	if (!cmd)
-	{
-		free(new->file);
-		free(new);
-		return ;
-	}
+		return (free(new->file), free(new));
 	if (!cmd->redir)
 		cmd->redir = new;
 	else
