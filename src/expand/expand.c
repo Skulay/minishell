@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 10:36:48 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/17 13:13:14 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/09 23:00:59 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 void	expand_redirs(t_cmd *cmd, t_data *data)
 {
 	t_redir	*tmp;
+	char	*old_file;
 
 	tmp = cmd->redir;
 	while (tmp)
 	{
+		old_file = tmp->file;
 		if (tmp->type != HEREDOC || heredoc_not_quoted(tmp))
-			tmp->file = expand_var_quote(tmp->file, data);
+			tmp->file = expand_var_quote(old_file, data);
 		else
-			tmp->file = rm_quotes(tmp->file);
+			tmp->file = rm_quotes(old_file);
+		free(old_file);
 		tmp = tmp->next;
 	}
 }
