@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:09:07 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/05 16:10:41 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/11 02:43:53 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,11 @@ char	**expand_split(char *str, t_data *data)
 
 	make_split = 0;
 	expanded = expand_flag(str, data, &make_split);
+	if (!expanded || expanded[0] == '\0')
+	{
+		free(expanded);
+		return (NULL);
+	}
 	if (make_split)
 		result = ft_split(expanded, ' ');
 	else
@@ -103,6 +108,8 @@ char	**append_all(char **dest, char **src)
 	int		ldest;
 	int		lsrc;
 
+	if (!src)
+		return (dest);
 	ldest = tab_len(dest);
 	lsrc = tab_len(src);
 	new = malloc(sizeof(char *) * (ldest + lsrc + 1));
