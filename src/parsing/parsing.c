@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:54:48 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/10 18:25:01 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/11 01:55:02 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,13 @@ t_cmd	*parsing(t_token *token, t_data *data)
 		return (NULL);
 	if (!check_error(token))
 	{
+		data->last_exit_code = 1;
 		free_tok(token);
 		return (NULL);
 	}
 	if (!check_tok(token))
 	{
+		data->last_exit_code = 1;
 		free_tok(token);
 		return (NULL);
 	}
