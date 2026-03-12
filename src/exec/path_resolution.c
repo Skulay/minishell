@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_resolution.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 22:34:25 by tkhider           #+#    #+#             */
-/*   Updated: 2026/02/23 03:38:05 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/12 00:31:18 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*findvalidpath(char **env, char *binary)
 		return (NULL);
 	if (isabsolute(binary))
 	{
-		if (access(binary, F_OK | X_OK) == 0)
+		if (access(binary, F_OK) == 0)
 			return (ft_strdup(binary));
 		return (NULL);
 	}

@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/10 23:28:42 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/12 01:04:18 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include "../libft/libft.h"
+# include <errno.h>
 # include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -21,6 +22,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>

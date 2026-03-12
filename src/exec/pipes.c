@@ -6,18 +6,30 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/10 23:28:22 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/12 01:03:53 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void	exit_perror(char *line, t_cmd *cmd, t_data *data)
+static void	exit_perror(char *path, t_cmd *cmd, t_data *data)
 {
-	free(line);
-	perror(cmd->arg_cmd[0]);
+	int	error_code;
+
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmd->arg_cmd[0], STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd(strerror(errno), STDERR_FILENO);
+	if (errno == EACCES)
+		error_code = 126;
+	else if (errno == ENOENT)
+		error_code = 127;
+	else
+		error_code = 1;
+	if (path)
+		free(path);
 	free_all(cmd, data);
-	exit(126);
+	exit(error_code);
 }
 
 static void	wait_children(pid_t last_pid, t_data *data)
