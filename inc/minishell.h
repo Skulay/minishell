@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/12 01:04:18 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/12 20:30:35 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ char				*my_get_env(t_data *data, char *var);
 char				*extract_var(char *str, int *i, t_data *data);
 int					tab_len(char **tab);
 char				**single_to_tab(char *str);
-char				*ft_heredoc_expand(char *line);
+char				*ft_heredoc_expand(char *line, t_data *data);
 
 // env
 t_data				*make_my_env(char **env);
@@ -178,7 +178,7 @@ void				interactive_signals_management(void);
 void				execution_signals_management(void);
 
 // redirection
-int					redirection_manager(t_redir *redir);
+int					redirection_manager(t_redir *redir, t_data *data);
 
 // clean up
 void				free_tok(t_token *token);

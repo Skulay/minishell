@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredocs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 03:53:22 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/04 00:55:18 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/12 20:25:25 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*new;
 
+	if (!s2)
+		s2 = "";
 	new = ft_strjoin(s1, s2);
 	free(s1);
 	return (new);
@@ -23,16 +25,15 @@ static char	*ft_strjoin_free(char *s1, char *s2)
 
 static int	is_vstart(char c)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')
-		|| c == '_')
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_')
 		return (1);
 	return (0);
 }
 
 static int	is_vchar(char c)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')
-		|| (c >= '0' && c <= '9') || c == '_')
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0'
+			&& c <= '9') || c == '_')
 		return (1);
 	return (0);
 }
@@ -53,10 +54,11 @@ static char	*join_char(char *s, char c)
 	return (new);
 }
 
-char	*ft_heredoc_expand(char *line)
+char	*ft_heredoc_expand(char *line, t_data *data)
 {
 	char	*result;
 	char	*var;
+	char	*val;
 	int		i;
 	int		start;
 
@@ -70,9 +72,8 @@ char	*ft_heredoc_expand(char *line)
 			while (line[i] && is_vchar(line[i]))
 				i++;
 			var = ft_substr(line, start, i - start);
-			result = ft_strjoin_free(result, getenv(var));
-			if (!getenv(var))
-				result = ft_strjoin_free(result, "");
+			val = my_get_env(data, var);
+			result = ft_strjoin_free(result, val);
 			free(var);
 		}
 		else

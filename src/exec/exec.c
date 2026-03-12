@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:47:02 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/12 17:00:35 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/12 20:28:00 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	exec_cmd(t_cmd *command, t_data *data)
 			ft_exit(command, data);
 		stdin_original = dup(STDIN_FILENO);
 		stdout_original = dup(STDOUT_FILENO);
-		if (redirection_manager(command->redir) != 0)
+		if (redirection_manager(command->redir, data) != 0)
 		{
 			fd_manipulation(stdin_original, stdout_original);
 			data->last_exit_code = 1;

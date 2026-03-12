@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 22:52:33 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/04 00:56:54 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/12 20:28:29 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static int	ft_heredoc(t_redir *redir)
+static int	ft_heredoc(t_redir *redir, t_data *data)
 {
 	int		fd[2];
 	char	*line;
@@ -25,7 +25,7 @@ static int	ft_heredoc(t_redir *redir)
 		if (!line)
 			break ;
 		if (!redir->quote)
-			line = ft_heredoc_expand(line);
+			line = ft_heredoc_expand(line, data);
 		if (!ft_strcmp(line, redir->file))
 			break ;
 		write(fd[1], line, ft_strlen(line));
@@ -74,7 +74,7 @@ static int	ft_redir_out(t_redir *redir)
 	return (0);
 }
 
-int	redirection_manager(t_redir *redir)
+int	redirection_manager(t_redir *redir, t_data *data)
 {
 	while (redir)
 	{
@@ -84,7 +84,7 @@ int	redirection_manager(t_redir *redir)
 			return (1);
 		else if (redir->type == REDIR_IN && ft_redir_in(redir) != 0)
 			return (1);
-		else if (redir->type == HEREDOC && ft_heredoc(redir) != 0)
+		else if (redir->type == HEREDOC && ft_heredoc(redir, data) != 0)
 			return (1);
 		redir = redir->next;
 	}

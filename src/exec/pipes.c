@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/12 18:00:34 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/12 20:27:49 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	child_manager(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
 		close(fd[0]);
 		close(fd[1]);
 	}
-	if (redirection_manager(cmd->redir) != 0)
+	if (redirection_manager(cmd->redir,data) != 0)
 	{
 		free_all(cmd, data);
 		exit(1);
