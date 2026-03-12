@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/08 00:42:24 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/12 17:30:49 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ int	main(int ac, char **av, char **env)
 	data = make_my_env(env);
 	shell_loop(data, shell);
 	helper_main(data);
-	return (0);
+	return (data->last_exit_code);
 }
