@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 19:13:13 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/12 21:10:55 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/12 21:19:09 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	find_in_env(char **env, char *key)
 	while (env[i])
 	{
 		if (!ft_strncmp(env[i], key, len) && (env[i][len] == '='
-				|| env[i][len] == '\0'))
+			|| env[i][len] == '\0'))
 			return (i);
 		i++;
 	}
