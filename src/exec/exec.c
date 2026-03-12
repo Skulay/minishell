@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:47:02 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/11 02:21:28 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/12 17:00:35 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	exec_cmd(t_cmd *command, t_data *data)
 	execute_pipeline(command, data);
 	return (0);
 }
+
 void	command_not_found(t_cmd *command, t_data *data, int *fd)
 {
 	if (command->next)

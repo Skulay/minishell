@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/12 01:03:53 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/12 16:59:54 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static void	wait_children(pid_t last_pid, t_data *data)
 static void	child_manager(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
 {
 	char	*path;
-	int		statut;
 
 	if (prev_fd != -1)
 	{
@@ -73,11 +72,7 @@ static void	child_manager(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
 		exit(1);
 	}
 	if (is_builtin(cmd->arg_cmd[0]))
-	{
-		statut = exec_builtin(cmd, data);
-		free_all(cmd, data);
-		exit(statut);
-	}
+		(free_all(cmd, data), exit(exec_builtin(cmd, data)));
 	path = findvalidpath(data->my_env, cmd->arg_cmd[0]);
 	if (!path)
 		command_not_found(cmd, data, fd);
