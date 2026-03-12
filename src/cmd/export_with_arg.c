@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_with_arg.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 19:13:13 by alehamad          #+#    #+#             */
-/*   Updated: 2026/02/25 20:56:53 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/12 21:10:55 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	find_in_env(char **env, char *key)
 	len = ft_strlen_key(key);
 	while (env[i])
 	{
-		if (!ft_strncmp(env[i], key, len)
-			&& (env[i][len] == '=' || env[i][len] == '\0'))
+		if (!ft_strncmp(env[i], key, len) && (env[i][len] == '='
+				|| env[i][len] == '\0'))
 			return (i);
 		i++;
 	}
@@ -42,11 +42,9 @@ int	find_in_env(char **env, char *key)
 void	add_update_env(t_data *data, char *arg)
 {
 	int		i;
-	int		len;
 	int		index;
 	char	**new_env;
 
-	len = ft_strlen_key(arg);
 	index = find_in_env(data->my_env, arg);
 	if (index >= 0)
 	{
