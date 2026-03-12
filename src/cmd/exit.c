@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/10 18:48:04 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/12 21:03:23 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	is_numeric(char *str)
 	return (1);
 }
 
-int	ft_exit(t_cmd *cmd, t_data *data)
+static void	exit_helper(t_cmd *cmd, t_data *data)
 {
 	int	code;
 
@@ -57,6 +57,13 @@ int	ft_exit(t_cmd *cmd, t_data *data)
 		free_all(cmd, data);
 		exit(255);
 	}
+}
+
+int	ft_exit(t_cmd *cmd, t_data *data)
+{
+	int	code;
+
+	exit_helper(cmd, data);
 	if (cmd->arg_cmd[2])
 	{
 		ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
@@ -65,4 +72,5 @@ int	ft_exit(t_cmd *cmd, t_data *data)
 	}
 	code = ft_atoi(cmd->arg_cmd[1]) % 256;
 	free_exit(data, cmd, code);
+	return (code);
 }

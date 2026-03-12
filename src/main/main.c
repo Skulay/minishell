@@ -56,12 +56,10 @@ void	shell_loop(t_data *data, int shell)
 
 int	main(int ac, char **av, char **env)
 {
-	char	*line;
-	t_token	*token;
-	t_cmd	*cmd;
 	t_data	*data;
 	int		shell;
 
+	(void)av;
 	if (ac >= 2)
 		return (1);
 	shell = isatty(STDIN_FILENO);
