@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/12 17:30:49 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/13 23:15:00 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	shell_loop(t_data *data, int shell)
 			add_history(line);
 		token = lexer(line, data);
 		cmd = parsing(token, data);
+		data->head = cmd;
 		exec_cmd(cmd, data);
 		free_cmd(cmd);
 		free(line);
