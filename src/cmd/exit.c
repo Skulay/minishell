@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/12 21:03:23 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/14 05:15:57 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	exit_helper(t_cmd *cmd, t_data *data)
 		ft_putstr_fd(cmd->arg_cmd[1], STDERR_FILENO);
 		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
 		free_all(cmd, data);
-		exit(255);
+		exit(2);
 	}
 }
 
