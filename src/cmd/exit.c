@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 10:57:09 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/14 05:15:57 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/15 00:16:47 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static void	free_exit(t_data *data, t_cmd *cmd, int code)
+void	free_exit(t_data *data, t_cmd *cmd, int code)
 {
 	free_all(cmd, data);
 	exit(code);

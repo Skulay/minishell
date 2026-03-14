@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/10 12:07:43 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/13 23:15:00 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/15 00:29:54 by alehamad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,28 @@ static void	helper_main(t_data *data)
 	rl_clear_history();
 }
 
+static void	helper_loop(char *line, t_data *data)
+{
+	t_cmd	*cmd;
+	t_token	*token;
+
+	token = lexer(line, data);
+	cmd = parsing(token, data);
+	data->head = cmd;
+	exec_cmd(cmd, data);
+	free_cmd(cmd);
+	free(line);
+}
+
+static void	ft_sig_code(t_data *data)
+{
+	data->last_exit_code = 130;
+	g_sig_code = 0;
+}
+
 void	shell_loop(t_data *data, int shell)
 {
 	char	*line;
-	t_token	*token;
-	t_cmd	*cmd;
 
 	while (1)
 	{
@@ -31,10 +48,7 @@ void	shell_loop(t_data *data, int shell)
 			interactive_signals_management();
 			line = readline(PROMPT);
 			if (g_sig_code == 130)
-			{
-				data->last_exit_code = 130;
-				g_sig_code = 0;
-			}
+				ft_sig_code(data);
 		}
 		else
 		{
@@ -46,12 +60,7 @@ void	shell_loop(t_data *data, int shell)
 			break ;
 		if (shell && line[0])
 			add_history(line);
-		token = lexer(line, data);
-		cmd = parsing(token, data);
-		data->head = cmd;
-		exec_cmd(cmd, data);
-		free_cmd(cmd);
-		free(line);
+		helper_loop(line, data);
 	}
 }
 

@@ -46,6 +46,7 @@ SRCS =  $(SRC_DIR)/main/main.c \
         $(SRC_DIR)/exec/path_resolution.c \
         $(SRC_DIR)/redirections/redir.c \
         $(SRC_DIR)/exec/pipes.c \
+        $(SRC_DIR)/exec/pipes_utils.c \
         $(SRC_DIR)/exec/is_builtin.c \
         $(SRC_DIR)/exec/exec_builtin.c \
         $(SRC_DIR)/signals/signals.c \
