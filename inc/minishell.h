@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 04:17:16 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/15 00:21:21 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/15 04:09:18 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void					ft_strcpy(char *dst, char *src);
 int						valid_identifier(char *str);
 void					export_error(char *arg);
 void					free_exit(t_data *data, t_cmd *cmd, int code);
-void					dup_close(int fd1, int fd2);
+void					dup_close(int *fd);
 
 // lexer
 bool					is_space(char c);

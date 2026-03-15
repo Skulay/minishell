@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_utils.c                                       :+:      :+:    :+:   */
+/*   pipes_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 00:14:02 by alehamad          #+#    #+#             */
-/*   Updated: 2026/03/15 00:14:02 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/15 04:12:23 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	dup_close(int fd1, int fd2)
+void	dup_close(int *fd)
 {
-	dup2(fd1, STDOUT_FILENO);
-	close(fd2);
-	close(fd1);
+	dup2(fd[0], STDOUT_FILENO);
+	close(fd[1]);
+	close(fd[0]);
 }

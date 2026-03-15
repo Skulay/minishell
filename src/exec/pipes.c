@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alehamad <alehamad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:45:11 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/15 00:30:46 by alehamad         ###   ########.fr       */
+/*   Updated: 2026/03/15 04:09:05 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	child_manager(t_cmd *cmd, t_data *data, int prev_fd, int *fd)
 		close(prev_fd);
 	}
 	if (cmd->next)
-		dup_close(fd[0], fd[1]);
+		dup_close(fd);
 	if (redirection_manager(cmd->redir, data) != 0)
 		free_exit(data, cmd, 1);
 	if (is_builtin(cmd->arg_cmd[0]))
