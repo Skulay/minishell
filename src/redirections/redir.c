@@ -6,7 +6,7 @@
 /*   By: tkhider <tkhider@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 22:52:33 by tkhider           #+#    #+#             */
-/*   Updated: 2026/03/12 20:28:29 by tkhider          ###   ########.fr       */
+/*   Updated: 2026/03/15 21:55:11 by tkhider          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ static int	ft_heredoc(t_redir *redir, t_data *data)
 {
 	int		fd[2];
 	char	*line;
+	void	(*old_sigquit)(int);
 
 	if (pipe(fd) == -1)
 		return (perror("pipe"), 1);
+	old_sigquit = signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		line = readline("> ");
@@ -35,6 +37,7 @@ static int	ft_heredoc(t_redir *redir, t_data *data)
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
+	signal(SIGQUIT, old_sigquit);
 	return (free(line), 0);
 }
 
