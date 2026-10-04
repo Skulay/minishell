@@ -6,6 +6,7 @@ LDFLAGS     = -lreadline
 
 LIBFT_DIR   = libft
 LIBFT       = $(LIBFT_DIR)/libft.a
+LIBFT_REPO  = https://github.com/Skulay/libft.git
 
 SRC_DIR     = src
 
@@ -58,19 +59,24 @@ RM = rm -f
 
 all: $(LIBFT) $(NAME)
 
-$(LIBFT):
+$(LIBFT_DIR):
+	git clone --depth 1 $(LIBFT_REPO) $(LIBFT_DIR)
+
+$(LIBFT): | $(LIBFT_DIR)
 	@make -C $(LIBFT_DIR)
+
+$(OBJS): | $(LIBFT_DIR)
 
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LDFLAGS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)
-	@make -C $(LIBFT_DIR) clean
+	@if [ -d $(LIBFT_DIR) ]; then make -C $(LIBFT_DIR) clean; fi
 
 fclean: clean
 	$(RM) $(NAME)
-	@make -C $(LIBFT_DIR) fclean
+	@if [ -d $(LIBFT_DIR) ]; then make -C $(LIBFT_DIR) fclean; fi
 
 re: fclean all
 

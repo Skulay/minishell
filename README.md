@@ -106,6 +106,7 @@ Everything is written in C (Norm-compliant) on top of our own `libft`, with **GN
 - Linux (or macOS)
 - `cc` / `gcc` / `clang`
 - `make`
+- `git` and an internet connection on the first build (to fetch `libft`)
 - GNU Readline development headers
 
 ```bash
@@ -124,11 +125,13 @@ make
 
 The program takes **no arguments**.
 
+> `libft` is not stored in this repository: on the first `make`, it is cloned automatically from [Skulay/libft](https://github.com/Skulay/libft) into `libft/`.
+
 ### Make rules
 
 | Rule | Action |
 |---|---|
-| `make` / `make all` | Build `libft.a`, then `minishell` |
+| `make` / `make all` | Clone `libft` if missing, build `libft.a`, then `minishell` |
 | `make clean` | Remove object files |
 | `make fclean` | Remove object files, `libft.a` and the binary |
 | `make re` | `fclean` then `all` |
@@ -217,7 +220,7 @@ Tokens and commands are freed after every line; the environment and Readline his
 .
 ├── inc/
 │   └── minishell.h          # all types and prototypes
-├── libft/                   # our own C library (strings, memory, printf, get_next_line, lists)
+├── libft/                   # our own C library, cloned by make (not versioned here)
 ├── makefile
 └── src/
     ├── main/                # entry point and shell loop
