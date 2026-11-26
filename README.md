@@ -1,29 +1,14 @@
 *This project has been created as part of the 42 curriculum by alehamad, tkhider.*
 
-<div align="center">
+# minishell
 
-# 🐚 minishell
+A small Bash-like Unix shell, written from scratch in C.
 
-**A small Bash-like Unix shell, written from scratch in C.**
+![language](https://img.shields.io/badge/language-C-000000?style=flat-square)
+![school](https://img.shields.io/badge/school-42-000000?style=flat-square)
+![library](https://img.shields.io/badge/library-Readline-000000?style=flat-square)
 
-![Language](https://img.shields.io/badge/language-C-00599C?style=flat-square&logo=c)
-![School](https://img.shields.io/badge/school-42-000000?style=flat-square)
-![Norm](https://img.shields.io/badge/norminette-passing-success?style=flat-square)
-![Platform](https://img.shields.io/badge/platform-Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
-
-[Overview](#-overview) •
-[Features](#-features) •
-[Getting started](#-getting-started) •
-[Architecture](#-architecture) •
-[Examples](#-examples) •
-[Limitations](#-limitations) •
-[Authors](#-authors)
-
-</div>
-
----
-
-## 📖 Overview
+## Overview
 
 **minishell** is a reimplementation of a subset of **Bash**: an interactive prompt that reads a command line, splits it into tokens, builds a command list, expands variables, then runs it with pipes, redirections and heredocs, the same way a real shell does.
 
@@ -37,9 +22,7 @@ The goal of the project is to understand what happens between pressing <kbd>Ente
 
 Everything is written in C (Norm-compliant) on top of our own `libft`, with **GNU Readline** as the only external library for line editing and history.
 
----
-
-## ✨ Features
+## Features
 
 ### Command line
 
@@ -95,11 +78,9 @@ Everything is written in C (Norm-compliant) on top of our own `libft`, with **GN
 | <kbd>Ctrl</kbd>+<kbd>\\</kbd> | Ignored at the prompt and inside heredocs |
 | Exit statuses | `127` command not found, `126` not executable, `128 + n` when killed by a signal |
 
-> Only **one global variable** is used, as required by the subject: it stores the number of the received signal.
+Only **one global variable** is used, as required by the subject: it stores the number of the received signal.
 
----
-
-## 🚀 Getting started
+## Build
 
 ### Requirements
 
@@ -114,18 +95,15 @@ Everything is written in C (Norm-compliant) on top of our own `libft`, with **GN
 sudo apt install build-essential libreadline-dev
 ```
 
-### Build & run
+### Compile
 
 ```bash
 git clone <repository-url> minishell
 cd minishell
 make
-./minishell
 ```
 
-The program takes **no arguments**.
-
-> `libft` is not stored in this repository: on the first `make`, it is cloned automatically from [Skulay/libft](https://github.com/Skulay/libft) into `libft/`.
+`libft` is not stored in this repository: on the first `make`, it is cloned automatically from [Skulay/libft](https://github.com/Skulay/libft) into `libft/`.
 
 ### Make rules
 
@@ -136,9 +114,28 @@ The program takes **no arguments**.
 | `make fclean` | Remove object files, `libft.a` and the binary |
 | `make re` | `fclean` then `all` |
 
----
+## Usage
 
-## 🏗 Architecture
+```
+./minishell
+```
+
+The program takes **no arguments** and opens an interactive prompt. Commands can also be piped in, in which case the prompt is not printed:
+
+```bash
+echo "ls -l | wc -l" | ./minishell
+```
+
+### Keys
+
+| Input | Action |
+|---|---|
+| <kbd>Ctrl</kbd>+<kbd>C</kbd> | Cancel the current line and show a new prompt |
+| <kbd>Ctrl</kbd>+<kbd>D</kbd> | Exit the shell |
+| <kbd>Ctrl</kbd>+<kbd>\\</kbd> | Ignored at the prompt |
+| <kbd>↑</kbd> / <kbd>↓</kbd> | Browse the history |
+
+## How it works
 
 Each line typed at the prompt goes through the same pipeline before control comes back to the user:
 
@@ -212,9 +209,7 @@ Three signal setups, swapped depending on context:
 
 Tokens and commands are freed after every line; the environment and Readline history are freed when the shell exits.
 
----
-
-## 📂 Project structure
+## Project structure
 
 ```
 .
@@ -237,9 +232,7 @@ Tokens and commands are freed after every line; the environment and Readline his
     └── debug/               # token / AST / env printers used during development
 ```
 
----
-
-## 💻 Examples
+## Examples
 
 ```console
 $ ./minishell
@@ -252,9 +245,9 @@ minishell# cat < out.txt
 HI THERE
 
 minishell# cat << EOF | wc -l
-> line one
-> line two: $GREETING
-> EOF
+line one
+line two: $GREETING
+EOF
 2
 
 minishell# ls /nowhere
@@ -273,9 +266,7 @@ $ echo $?
 42
 ```
 
----
-
-## 🚧 Limitations
+## Limitations
 
 This is the **mandatory part** of the subject only. Not implemented, on purpose:
 
@@ -284,9 +275,7 @@ This is the **mandatory part** of the subject only. Not implemented, on purpose:
 - `;` command separator and `\` escaping *(not required by the subject)*
 - Subshells, job control, `$(…)` command substitution, aliases, shell scripts
 
----
-
-## 🧪 Testing
+## Testing
 
 The shell was tested by running the same inputs in `minishell` and in `bash` / `bash --posix` and comparing output and exit status, with:
 
@@ -298,11 +287,9 @@ The shell was tested by running the same inputs in `minishell` and in `bash` / `
 valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes ./minishell
 ```
 
-*(Readline keeps some memory of its own until exit, which the subject explicitly allows. Only leaks coming from our code count.)*
+Readline keeps some memory of its own until exit, which the subject explicitly allows. Only leaks coming from our code count.
 
----
-
-## 📚 Resources
+## Resources
 
 - `man 2` / `man 3` pages: `fork`, `execve`, `pipe`, `dup2`, `waitpid`, `sigaction`, `open`, `access`
 - [Bash Reference Manual](https://www.gnu.org/software/bash/manual/bash.html), especially *Shell Operation*, *Quoting* and *Redirections*
@@ -310,17 +297,9 @@ valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes ./minishell
 - [POSIX Shell Command Language](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
 - Bash, `bash --posix` and `dash` as reference behaviour
 
----
+## Authors
 
-## 👥 Authors
-
-| | Login | Main areas |
-|---|---|---|
-| 🧑‍💻 | **alehamad** | Lexer, parser, expander, environment |
-| 🧑‍💻 | **tkhider** | Execution, pipes, redirections, builtins, signals |
-
-<div align="center">
-
-*Made with ☕ at 42*
-
-</div>
+| Login | Work |
+|---|---|
+| **alehamad** | Lexer, parser, expander, environment |
+| **tkhider** | Execution, pipes, redirections, builtins, signals |
